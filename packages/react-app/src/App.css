@@ -1,5 +1,6 @@
 .App {
   /* text-align: center; */
+  overflow-x: hidden;
 }
 
 /* width */
@@ -18,16 +19,16 @@
 }
 
 @font-face {
-  font-family: nasalization-rg;
-  src: url(./nasalization-rg.otf);
+  font-family: retro-gaming;
+  src: url(./retro-gaming.ttf);
 }
 @font-face {
-  font-family: Helv-LT;
-  src: url(./HelveticaLTStd-Cond.otf);
+  font-family: upheavtt;
+  src: url(./upheavtt.ttf);
 }
 @font-face {
-  font-family: Helv-Neue;
-  src: url(./HelveticaNeueLTStd-Blk.otf);
+  font-family: pixeled;
+  src: url(./pixeled.ttf);
 }
 
 .ether{
@@ -43,30 +44,34 @@
   max-height: 300px;
 }
 
+.logo{
+  width:40px;
+}
+
 p {
-  font-family: Helv-LT;
-  font-size: 1.2rem;
+  font-family: retro-gaming;
+  font-size: 2rem;
   letter-spacing: 2px;
-  color: black !important;
+  color: white !important;
 }
 
 h1, h2, h3, h5, h4{
-  font-family: Helv-Neue;
+  font-family: upheavtt;
   /* font-weight: bold !important; */
   /* font-stretch: condensed; */
-  color: black !important;
+  color: #2E3192 !important;
 }
 
 h4{
-  font-family: Helv-Neue;
+  font-family: Gogh;
   /* font-weight: bold !important; */
   /* font-stretch: condensed; */
-  color: black !important;
+  color: white !important;
 }
 
 .icon{
   margin-right: 1rem;
-  color: black !important;
+  color: white !important;
   cursor: pointer;
 }
 
@@ -75,20 +80,21 @@ h4{
 }
 
 html { 
-  background: url(hero.png) no-repeat;
+  background: url(hero.png) no-repeat fixed;
   background-size: cover;
   width: 100%; 
   scroll-behavior: smooth;
   /* background-size: 50vw; */
   /* background-position: -80%; */
   background-color: white !important;
+  overflow-x: hidden;
 }
 
 
-.blankSection {
+/* .blankSection {
   align-items: center;
   height: 100vh;
-}
+} */
 
 .section{
   margin-top: 10vh;
@@ -116,7 +122,7 @@ body{
 }
 
 .ant-anchor-link{
-  font-family: Helv-Neue !important;
+  font-family: Gogh !important;
   /* font-weight: bold !important; */
   font-stretch: condensed !important;
   font-size: 1.5rem;
@@ -165,23 +171,25 @@ body{
 }
 
 .navLink{
+  font-size: 1.5rem;
   margin: 0 1rem 0 1rem;
   cursor: pointer;
+  vertical-align: super;
 }
 
 .navLink > a, .navLink > a:hover {
-  color: black;
+  color: white;
   text-decoration: none;
 }
 
 .navIcon{
   margin-right: 1.5rem;
-  color: black !important;
+  color: white !important;
   cursor: pointer;
   font-size:40px;
 }
 
-.icon:hover, .openseaIcon:hover, .navLink:hover, .footerIcon:hover, .navIcon:hover, a > h1:hover{
+.icon:hover, .openseaIcon:hover, .navLink:hover, .footerIcon:hover, .navIcon:hover, a > h1:hover, .openseaBadge:hover{
   opacity: 0.8;
 }
 
@@ -191,18 +199,18 @@ a > h1:hover{
 
 .footerIcon{
   margin-right: 2rem;
-  color: black !important;
+  color: white !important;
   cursor: pointer;
   font-size:40px;
 }
 
 .openseaIcon {
-  width: 35px !important;
+  width: 40px !important;
   margin-right: 1rem;
 }
 
-.grey-bg{
-  width: 90rem !important;
+.van-gogh-bg{
+  width: 70rem !important;
 }
 
 
@@ -225,14 +233,15 @@ a > h1:hover{
   height: 100px !important;
   border: none !important;
   vertical-align: text-bottom !important;
-  color: black !important;
-  background-color: white !important;
+  color: white !important;
+  background-color: black !important;
   font-size: 5rem !important;
 }
 
 .mintBtn{
   border-radius: 10 !important;
   background-color: black !important;
+  padding: 5px;
   width: 150px !important;
   height: 60px !important;
   font-size: 2rem !important;
@@ -242,7 +251,43 @@ a > h1:hover{
 .teamName{
   text-align: center;
 }
+
+.subtitle{
+  font-size: 3rem;
+}
+
+.title{
+  font-size: 5rem;
+  margin: auto;
+width: 100%;
+}
+
+.sneakpeek{
+  width: 70rem !important;
+  border-radius: 50px;
+}
+
+.collab{
+  width: 50rem !important;
+  /* border-radius: 50px; */
+}
+
+.openseaBadge{
+  width:220px; 
+  border-radius:5px; 
+  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
+}
+
 @media only screen and (max-width: 900px) {
+
+  .subtitle{
+    font-size: 2em;
+  }
+  
+  .title{
+    font-size: 3rem;
+    text-align: "left";
+  }
 
   .scalable-image{
     display: block;
@@ -254,40 +299,44 @@ a > h1:hover{
   }
 
   p {
-    font-size: 1rem;
+    font-size: 2rem;
   }
 
   html {
-    background-size: 100vw !important;
-    width: 0; 
+    width: 0;
+    overflow-x: hidden;
   }
 
-  .blankSection {
+  /* .blankSection {
     height: 20vh;
-  }
+  } */
 
-  .grey-bg{
+  .van-gogh-bg{
     width: 100vw !important;
   }
 
   .scalable-image{
-    max-width: 30px;
-    max-height: 30px;
+    max-width: 100px;
+    max-height: 100px;
     /* margin: 20px auto; */
   }
 
   .inputMint{
-    width: 3rem !important;
-    height: 30px !important;
+    width: 5rem !important;
+    height: 100px !important;
     border: none !important;
     vertical-align: text-bottom !important;
-    color: black !important;
-    background-color: white !important;
-    font-size: 1.5rem !important;
+    color: white !important;
+    background-color: black !important;
+    font-size: 3rem !important;
   }
 
+  .mintBtn{
+    height: 80px !important;
+    
+  }
   .mint h1, .mint h2, .mint span{
-    font-size: 1rem !important
+    font-size: 3rem !important
   }
 
   .scalable-phila-image{
@@ -302,11 +351,15 @@ a > h1:hover{
   }
 
   .navIcon{
-    font-size:20px;
+    font-size:40px;
     margin-right: 0.5rem;
   }
   .openseaIcon {
-    width: 18px !important;
+    width: 40px !important;
     /* margin-right: 0.2rem; */
+  }
+
+  .sneakpeek{
+    width: 90vw !important;
   }
 }

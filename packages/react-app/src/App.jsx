@@ -216,72 +216,6 @@ function App(props) {
 
   // totalSupply && totalSupply.then( res => {return res});
 
-  let networkDisplay = "";
-  if (NETWORKCHECK && localChainId && selectedChainId && localChainId !== selectedChainId) {
-    const networkSelected = NETWORK(selectedChainId);
-    const networkLocal = NETWORK(localChainId);
-    if (selectedChainId === 1337 && localChainId === 31337) {
-      networkDisplay = (
-        <div style={{ zIndex: 2, position: "absolute", right: 0, top: 60, padding: 16 }}>
-          <Alert
-            message="⚠️ Wrong Network ID"
-            description={
-              <div>
-                You have <b>chain id 1337</b> for localhost and you need to change it to <b>31337</b> to work with
-                HardHat.
-                <div>(MetaMask -&gt; Settings -&gt; Networks -&gt; Chain ID -&gt; 31337)</div>
-              </div>
-            }
-            type="error"
-            closable={false}
-          />
-        </div>
-      );
-    } else {
-      networkDisplay = (
-        <div style={{ zIndex: 2, position: "absolute", right: 0, top: 60, padding: 16 }}>
-          <Alert
-            message="⚠️ Wrong Network"
-            description={
-              <div>
-                You have <b>{networkSelected && networkSelected.name}</b> selected and you need to be on{" "}
-                <Button
-                  onClick={async () => {
-                    const ethereum = window.ethereum;
-                    const data = [
-                      {
-                        chainId: "0x" + targetNetwork.chainId.toString(16),
-                        chainName: targetNetwork.name,
-                        nativeCurrency: targetNetwork.nativeCurrency,
-                        rpcUrls: [targetNetwork.rpcUrl],
-                        blockExplorerUrls: [targetNetwork.blockExplorer],
-                      },
-                    ];
-                    console.log("data", data);
-                    const tx = await ethereum.request({ method: "wallet_addEthereumChain", params: data }).catch();
-                    if (tx) {
-                      console.log(tx);
-                    }
-                  }}
-                >
-                  <b>{networkLocal && networkLocal.name}</b>
-                </Button>.
-              </div>
-            }
-            type="error"
-            closable={false}
-          />
-        </div>
-      );
-    }
-  } else {
-    networkDisplay = (
-      <div style={{ zIndex: -1, position: "absolute", right: 154, top: 28, padding: 16, color: targetNetwork.color }}>
-        {targetNetwork.name}
-      </div>
-    );
-  }
-
   const loadWeb3Modal = useCallback(async () => {
     const provider = await web3Modal.connect();
     setInjectedProvider(new ethers.providers.Web3Provider(provider));
@@ -627,411 +561,294 @@ function App(props) {
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            {/*
-                🎛 this scaffolding is full of commonly used components
-                this <Contract/> component will automatically parse your ABI
-                and give you a form to interact with it locally
-            */}
-            {/* 
-             */}
-
-            {/* <ReactFullpage
-              scrollOverflow={false}
-              anchors={['firstPage', 'secondPage', 'thirdPage']}
-              render={({ state, fullpageApi }) => {
-                return ( */}
             <div id="fullpage-wrapper">
-              {/* <div style={{position: "fixed"}}>
-                      <img style={{ height:"82vh"}} src="hero.jpg"/>
-                    </div> */}
               <div className="section1" id="home">
-                <Row type="flex" align="middle" className="blankSection">
-                </Row>
-              </div>
-              <div className="section" >
-                <Row justify="center">
+                <Row type="flex" justify="center" align="middle">
                   <Col>
-                    <div className="container" >
-                      <Image className="grey-bg" preview={false} src={require('./greyBG_dome.png')} id="mint"/>
-                      <div className="centered" >
-                        {mintDisplay}
-                      </div>
-                    </div>
+                    <h1 className="title">
+                     ICY POLAR
+                    </h1>
                   </Col>
-
                 </Row>
               </div>
               <span id="about"></span>
-              <div className="section" >
-                <Row justify="center">
-                  <Col>
-                    <h2 style={{ fontSize: "5rem", textAlign: "center" }}>
-                      About
-                    </h2>
-                  </Col>
-                </Row>
-                <Row justify="center">
-                  <Col span={14}>
-                    <p className="verticalAlignText">
-                      Welcome to Icy Polar, a community space that aim to bridge the metaverse and real world with our series of randomly generated non-fungible tokens (NFTs). <br></br><br></br>
-                      Icy Polar hopes to expand its community with synergistic mechanics and collaboration between both Web3 and IRL communities. <br></br><br></br>Icy Polar will kick start its collection with 10,000 variegated plant; each granting its holder exclusive utility within the metaverse and the real world. <br></br><br></br>Each Icy Polar NFT also passively generate Oxygen which can be use to create new life within the metaverse. <br></br><br></br>Start breathing on the blockchain within Icy Polar
-                    </p>
-                  </Col>
-                  <Col>
-                    <Row justify="center">
-                      <Col span={6}>
-                        <Image className="scalable-phila-image" preview={false} src={require('./phila1.png')} />
-                      </Col>
-                      <Col span={6}>
-                        <Image className="scalable-phila-image" preview={false} src={require('./phila2.png')} />
-                      </Col>
-                      <Col span={6}>
-                        <Image className="scalable-phila-image" preview={false} src={require('./phila3.png')} />
-                      </Col>
-                      <Col span={6}>
-                        <Image className="scalable-phila-image" preview={false} src={require('./phila3.png')} />
-                      </Col>
-                    </Row>
-                  </Col>
-                </Row>
-              </div>
-              {/* <span id="roadmap"></span>
               <div className="section">
                 <Row justify="center">
                   <Col>
-                    <h2 style={{ fontSize: "5rem", textAlign: "center" }}>
-                      Roadmap v1.0
-                    </h2>
+                    <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
+                      Van Gogh's<br></br>Expressionism
+                    </h1>
                   </Col>
                 </Row>
                 <Row justify="center">
-                  <Col span={14}>
-                    <Row>
-                      <Col span={8} style={{ marginRight: "1rem" }}>
-                        <Image className="scalable-roadmap-image" preview={false} src={require('./roadmap-0.png')} />
-                      </Col>
-                      <Col span={15} style={{ alignSelf: "center" }}>
-                        <p className="verticalAlignText">
-                          Launching Icy Polar Community <br></br>
-                          Announce Whitelist participation events <br></br>
-                          Community engagement; first AMA on discord server <br></br>
-                          Community engagement; voting on royalties % <br></br>
-                          Launching presale and public sale
-                        </p>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col span={8} style={{ marginRight: "1rem" }}>
-                        <Image className="scalable-roadmap-image" preview={false} src={require('./roadmap-25.png')} />
-                      </Col>
-                      <Col span={15} style={{ alignSelf: "center" }}>
-                        <p className="verticalAlignText">
-                          30 <span className="ether">Ξ</span> committed to purchase first batch of NFT assets <br></br>
-                          Launch Icy Polar trivia season 1 with 4 <span className="ether">Ξ</span> prize pool <br></br>
-                          5 Lucky community members to receive Philodendome airdrop <br></br>
-                          Initial guerrilla/social media marketing <br></br>
-                          Special IRL giveaway
-                        </p>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col span={8} style={{ marginRight: "1rem" }}>
-                        <Image className="scalable-roadmap-image" preview={false} src={require('./roadmap-50.png')} />
-                      </Col>
-                      <Col span={15} style={{ alignSelf: "center" }}>
-                        <p className="verticalAlignText">
-                          30 <span className="ether">Ξ</span> committed to purchase second batch of NFT assets <br></br>
-                          Icy Polar merchandise development <br></br>
-                          Maintain guerrilla/social media marketing <br></br>
-                          Icy Polar trivia season 2 with 5 <span className="ether">Ξ</span> prize pool <br></br>
-                          Community engagement; 2nd AMA on discord server
-                        </p>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col span={8} style={{ marginRight: "1rem" }}>
-                        <Image className="scalable-roadmap-image" preview={false} src={require('./roadmap-75.png')} />
-                      </Col>
-                      <Col span={15} style={{ alignSelf: "center" }}>
-                        <p className="verticalAlignText">
-                          35 <span className="ether">Ξ</span> committed to purchase third batch of NFT assets <br></br>
-                          Purchase 3x3 plot of land on SANDBOX <br></br>
-                          Icy Polar trivia season 3 with 8 ETH prize pool <br></br>
-                          NYC takeover <br></br>
-                          Expand IRL utility partnerships
-                        </p>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col span={8} style={{ marginRight: "1rem" }}>
-                        <Image className="scalable-roadmap-image" preview={false} src={require('./roadmap-100.png')} />
-                      </Col>
-                      <Col span={15} style={{ alignSelf: "center" }}>
-                        <p className="verticalAlignText">
-                          40 <span className="ether">Ξ</span> committed to purchase last batch of NFT assets
-                          Icy Polar Merch Pop-Up
-                          Prepare fractionalization of NFT assets
-                          Initial PP2E game development
-                        </p>
-                      </Col>
-                      <br></br><br></br>
-                      <p className="verticalAlignText">
-                        More development to be unfold; so keep a look out for Roadmap 2.0
-                      </p>
-                    </Row>
+                  <Col lg={7} xs={14}>
+                    <p className="verticalAlignText">
+                      Van Gogh's Expressionism is about the
+                      struggles of being an artist. Van Gogh
+                      himself was torn by mental
+                      illness, emotions, passion, and distress.
+                    </p>
                   </Col>
                 </Row>
               </div>
 
+              <span id="collection"></span>
               <div className="section">
                 <Row justify="center">
                   <Col>
-                    <h2 style={{ fontSize: "5rem", textAlign: "center" }}>
-                      POST LAUNCH
-                    </h2>
+                    <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
+                      Collection
+                    </h1>
                   </Col>
                 </Row>
                 <Row justify="center">
-                  <Col span={19}>
+                  <Col lg={7} xs={14}>
                     <p className="verticalAlignText">
-                      Icy Polar community will further extend our reach into the real world bringing our holder an array of IRL utility from partnership with varies institutes. <br></br><br></br>
-                      
-                      A series of virtual and IRL events will be roll out; starting with a charity run (more details to be finalize), followed by a virtual auction of our one of ones held in our very own land on The Sandbox. <br></br><br></br>
-                      
-                      With our ever-growing community the possibility we are able to achieve are limitless; so buckled up and enjoy what Icy Polar have installed for all of you degen!
-                    </p>
-                  </Col>
-                </Row>
-              </div> */}
+                      Van Gogh's Expressionism artwork
+                      collection is a depiction of mental
+                      illnesses in colors and its severity,
 
-              <div className="section">
-                <Row justify="center">
-                  <Col lg={7} xs={14}>
-                    <h2>
-                      <p style={{ fontSize: "2rem", textAlign: "left", marginBottom: "0px"}}>
-                        Your very own 
-                      </p>
-                      <span style={{ fontSize: "2rem", textAlign: "left" }}>
-                      COMMUNITY
-                      </span>
-                    </h2>
-                  </Col>
-                </Row>
-                <Row justify="center">
-                  <Col lg={7} xs={14}>
-                    <p className="verticalAlignText">
-                    A Genesis Philodendome is your token into this community. 
-                    Stay active, make connection, and earn $Oxygen daily.Unlock Icy Polar's full potential together as a community. 
+                      Degen Van Gogh hopes to spread the awareness
+                      of mental illnesses and always to
+                      treat people with kindness
                     </p>
                   </Col>
                 </Row>
               </div>
 
-              <div className="section">
-                <Row justify="center">
-                  <Col lg={7} xs={14}>
-                    <h2 >
-                      <p style={{ fontSize: "2rem", textAlign: "left", marginBottom: "0px"}}>
-                        A portal 
-                      </p>
-                      <span style={{ fontSize: "2rem", textAlign: "left" }}>
-                      BRIDGE INTO THE REAL WORLD
-                      </span>
-                    </h2>
-                  </Col>
-                </Row>
-                <Row justify="center">
-                  <Col lg={7} xs={14}>
-                    <p className="verticalAlignText">
-                    Icy Polar will be your portal that bridge into the real world, bringing you tangible real life benefits. 
-                    Allowing you to reap benefits from both metaverse and IRL.  
-                    </p>
-                  </Col>
-                </Row>
-              </div>
-
-              <div className="section">
-                <Row justify="center">
-                  <Col lg={7} xs={14}>
-                    <h2 >
-                      <p style={{ fontSize: "2rem", textAlign: "left", marginBottom: "0px"}}>
-                      Passive income 
-                      </p>
-                      <span style={{ fontSize: "2rem", textAlign: "left" }}>PLAY TO EARN
-                      </span>
-                    </h2>
-                  </Col>
-                </Row>
-                <Row justify="center">
-                  <Col lg={7} xs={14}>
-                    <p className="verticalAlignText">
-                    A virtual horticulture game that allow you to not only find your inner peace but trade your cultivated plants for $Oxygen. Summon your inner agriculturists and start earning. 
-                    </p>
-                  </Col>
-                </Row>
-              </div>
-
-              <span id="roadmap"></span>
+              <span id="mint"></span>
               <div className="section">
                 <Row justify="center">
                   <Col>
-                    <h2 style={{ fontSize: "5rem", textAlign: "center" }}>
-                      Roadmap
-                    </h2>
-                  </Col>
-                </Row>
-                <Row justify="center">
-                  <Col lg={7} xs={14}>
-                    <h2 >
-                      <p style={{ fontSize: "2rem", textAlign: "left", marginBottom: "0px"}}>
-                      Phase I 
-                      </p>
-                      <span style={{ fontSize: "2rem", textAlign: "left" }}>ICY POLAR
-                      </span>
-                    </h2>
-                  </Col>
-                </Row>
-                <Row justify="center">
-                  <Col lg={7} xs={14}>
-                    <p className="verticalAlignText">
-                      <ul>
-                        <li>
-                          Mint your Genesis Philodendome
-                        </li>
-                        <li>
-                          Earn $Oxygen daily
-                        </li>
-                        <li>
-                          Enjoy IRL benefits from our pioneering partners as an early adopter
-                        </li>
-                      </ul>
-                    </p>
-                  </Col>
-                </Row>
-              </div>
-
-              <div className="section">
-                <Row justify="center">
-                  <Col lg={7} xs={14}>
-                    <h2 >
-                      <p style={{ fontSize: "2rem", textAlign: "left", marginBottom: "0px"}}>
-                      Phase II 
-                      </p>
-                      <span style={{ fontSize: "2rem", textAlign: "left" }}>CULTIVATE & TRADE
-                      </span>
-                    </h2>
-                  </Col>
-                </Row>
-                <Row justify="center">
-                  <Col lg={7} xs={14}>
-                    <p className="verticalAlignText">
-                      <ul>
-                        <li>
-                          Customize your own nursery in a P2E game
-                        </li>
-                        <li>
-                          Grow and nurture your virtual plants
-                        </li>
-                        <li>
-                          Cultivate, sell & trade your rare in-game plants for $Oxygen
-                        </li>
-                      </ul>
-                    </p>
-                  </Col>
-                </Row>
-              </div>
-
-              <div className="section">
-                <Row justify="center">
-                  <Col lg={7} xs={14}>
-                    <h2 >
-                      <p style={{ fontSize: "2rem", textAlign: "left", marginBottom: "0px"}}>
-                      Phase III
-                      </p>
-                      <span style={{ fontSize: "2rem", textAlign: "left" }}>REAL WORLD INTEGRATION
-                      </span>
-                    </h2>
-                  </Col>
-                </Row>
-                <Row justify="center">
-                  <Col lg={7} xs={14}>
-                    <p className="verticalAlignText">
-                      <ul>
-                        <li>
-                          Bridging into the real world with our crypto powered groupon app
-                        </li>
-                        <li>
-                          Subscribe using $Oxygen to enjoy RL tangible benefits from participating partners
-                        </li>
-                      </ul>
-                    </p>
-                  </Col>
-                </Row>
-              </div>
-
-              <span id="team"></span>
-              <div className="section">
-                <Row justify="center">
-                  <Col>
-                    <h2 style={{ fontSize: "5rem", textAlign: "center" }}>
-                      ICY POLAR TEAM
-                    </h2>
+                    <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
+                      Mint
+                    </h1>
                   </Col>
                 </Row>
                 <Row justify="center">
                   <Col>
-                    <Row justify="center">
-                      <Col span={6}>
-                        <Image className="scalable-phila-image" preview={false} src={require('./phila1.png')} />
-                        <div className="teamName">
-                          <h1>RICKY</h1>
-                          <a href="https://twitter.com/TheDomebyrei"><FontAwesomeIcon icon={faTwitter} size="3x" className="icon" /></a>
-                          <a href="https://discord.gg/U6QFZsJJc4"><FontAwesomeIcon icon={faDiscord} size="3x" className="icon" /></a>
-                        </div>
-                      </Col>
-                      <Col span={6}>
-                        <Image className="scalable-phila-image" preview={false} src={require('./phila2.png')} />
-                        <div className="teamName">
-                          <h1>SUNNY</h1>
-                          <a href="https://twitter.com/TheDomebyrei"><FontAwesomeIcon icon={faTwitter} size="3x" className="icon" /></a>
-                          <a href="https://discord.gg/U6QFZsJJc4"><FontAwesomeIcon icon={faDiscord} size="3x" className="icon" /></a>
-                        </div>
-                      </Col>
-                      <Col span={6}>
-                        <Image className="scalable-phila-image" preview={false} src={require('./phila3.png')} />
-                        <div className="teamName">
-                          <h1>MING KUANG</h1>
-                          <a href="https://twitter.com/TheDomebyrei"><FontAwesomeIcon icon={faTwitter} size="3x" className="icon" /></a>
-                          <a href="https://discord.gg/U6QFZsJJc4"><FontAwesomeIcon icon={faDiscord} size="3x" className="icon" /></a>
-                        </div>
-                      </Col>
-                      <Col span={6}>
-                        <Image className="scalable-phila-image" preview={false} src={require('./phila3.png')} />
-                        <div className="teamName">
-                          <h1>REI</h1>
-                          <a href="https://twitter.com/TheDomebyrei"><FontAwesomeIcon icon={faTwitter} size="3x" className="icon" /></a>
-                          <a href="https://discord.gg/U6QFZsJJc4"><FontAwesomeIcon icon={faDiscord} size="3x" className="icon" /></a>
-                        </div>
-                      </Col>
-                    </Row>
-                  </Col>
-                </Row>
-                <Row justify="center">
-                  <Col span={19}>
-                    {/* <span>
-                      <a href="https://twitter.com/TheDomebyrei"><FontAwesomeIcon icon={faTwitter} size="3x" className="icon" /></a>
-                      <a href="https://discord.gg/U6QFZsJJc4"><FontAwesomeIcon icon={faDiscord} size="3x" className="icon" /></a>
-                    </span> */}
-                    <br></br><br></br><br></br><br></br>
+                    {mintDisplay}
                   </Col>
                 </Row>
               </div>
+            </div>
+
+            <span id="sneak"></span>
+            <div className="section">
+              <Row justify="center">
+                <Col>
+                  <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
+                    Sneak Peeks
+                  </h1>
+                </Col>
+              </Row>
+              <Row justify="center">
+                <Col lg={7} xs={14}>
+                  <p className="verticalAlignText">
+                    Studies have shown that creative arts can be used as a form of therapy to cope
+                    and convert these experiences into artistic expressions
+                  </p>
+                </Col>
+              </Row>
+            </div>
+
+            <div className="section">
+              <Row justify="center">
+                <Col>
+                  <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
+                    Schizophrenia
+                  </h1>
+                </Col>
+              </Row>
+              <Row justify="center">
+                <Col lg={7} xs={14}>
+                  <p className="verticalAlignText">
+                    Schizophrenics preferred green less but
+                    brown more
+                  </p>
+                </Col>
+              </Row>
+            </div>
+            <div className="section">
+              <Row justify="center">
+                <Col>
+                  {/* <Image className="sneakpeek" preview={false} src={require('./Schizophrenia.jpg')} /> */}
+                </Col>
+              </Row>
+            </div>
+
+
+            <div className="section">
+              <Row justify="center">
+                <Col>
+                  <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
+                    Depression
+                  </h1>
+                </Col>
+              </Row>
+              <Row justify="center">
+                <Col lg={7} xs={14}>
+                  <p className="verticalAlignText">
+                    People with anxiety and depression are
+                    most likely to use a shade of gray to
+                    represent their mental state
+                  </p>
+                </Col>
+              </Row>
+            </div>
+            <div className="section">
+              <Row justify="center">
+                <Col>
+                  {/* <Image className="sneakpeek" preview={false} src={require('./depression.jpg')} /> */}
+                </Col>
+              </Row>
+            </div>
+
+            <div className="section">
+              <Row justify="center">
+                <Col>
+                  <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
+                    Bi-Polar<br></br>Disorder
+                  </h1>
+                </Col>
+              </Row>
+              <Row justify="center">
+                <Col lg={7} xs={14}>
+                  <p className="verticalAlignText">
+                    People with Bi-polar disorders experienced
+                    changes one or more of their five primary
+                    senses during a manic episode
+
+                    Colors were brighter and more vibrant
+                  </p>
+                </Col>
+              </Row>
+            </div>
+            <div className="section">
+              <Row justify="center">
+                <Col>
+                  {/* <Image className="sneakpeek" preview={false} src={require('./bi.jpg')} /> */}
+                </Col>
+              </Row>
+            </div>
+
+            <div className="section">
+              <Row justify="center">
+                <Col>
+                  <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
+                    Obsessive-
+                    Compulsive<br></br>
+                    Disorder
+                  </h1>
+                </Col>
+              </Row>
+              <Row justify="center">
+                <Col lg={7} xs={14}>
+                  <p className="verticalAlignText">
+                    People with OCD feared red.
+                    Red can have an association with blood,
+                    violence, death, etc.
+                  </p>
+                </Col>
+              </Row>
+            </div>
+            <div className="section">
+              <Row justify="center">
+                <Col>
+                  {/* <Image className="sneakpeek" preview={false} src={require('./ocd.jpg')} /> */}
+                </Col>
+              </Row>
+            </div>
+
+            <div className="section">
+              <Row justify="center">
+                <Col>
+                  <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
+                    Post-Traumatic<br></br>Stress Disorder
+                  </h1>
+                </Col>
+              </Row>
+              <Row justify="center">
+                <Col lg={7} xs={14}>
+                  <p className="verticalAlignText">
+                    People with post-traumatic
+                    stress disorder (PTSD) preferred the color green
+                  </p>
+                </Col>
+              </Row>
+            </div>
+            <div className="section">
+              <Row justify="center">
+                <Col>
+                  {/* <Image className="sneakpeek" preview={false} src={require('./ptsd.jpg')} /> */}
+                </Col>
+              </Row>
+            </div>
+
+            <div className="section">
+              <Row justify="center">
+                <Col>
+                  <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
+                    Paranoia
+                  </h1>
+                </Col>
+              </Row>
+              <Row justify="center">
+                <Col lg={7} xs={14}>
+                  <p className="verticalAlignText">
+                    Orange symbolizes paranoia and sudden fits of violence
+                  </p>
+                </Col>
+              </Row>
+            </div>
+            <div className="section">
+              <Row justify="center">
+                <Col>
+                  {/* <Image className="sneakpeek" preview={false} src={require('./paranoia.jpg')} /> */}
+                </Col>
+              </Row>
+            </div>
+
+
+            <span id="next"></span>
+            <div className="section">
+              <Row justify="center">
+                <Col>
+                  <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
+                    What's Next?
+                  </h1>
+                </Col>
+              </Row>
+              <Row justify="center">
+                  <Col lg={7} xs={14}>
+                    <p className="verticalAlignText">
+                      Holder will be able to access a dashboard where they can submit their PFPs for me to integrate your minted Van Gogh artwork with your PFPs.<br></br><br></br>
+                      NFTs will be airdropped to you as follow: <br></br><br></br>
+                      1. PFP - Your minted artwork as background with your submitted PFP<br></br><br></br>
+                      2. Twitter Banner - Your minted artwork in Twitter Banner size with or without your submitted PFP<br></br>
+                    </p>
+                    <br></br>
+                  </Col>
+                </Row>
+              <Row justify="center">
+                <Col>
+                  <h2 style={{ fontSize: "3rem", textAlign: "center" }}>
+                    PFP x Van Gogh Collection
+                  </h2>
+                </Col>
+              </Row>
+            </div>
+
+            
+            <div className="section">
+              <Row>
+              </Row>
             </div>
           </Route>
 
           {/* <Route path="/debugcontracts">
             <Contract
-              name="IcyPolar"
+              name="VanGoghExpressionism"
               signer={userSigner}
               provider={localProvider}
               address={address}
@@ -1044,13 +861,12 @@ function App(props) {
       {/* <ThemeSwitch /> */}
 
       {/* 👨‍💼 Your account is in the top right with a wallet at connect options */}
-      <div style={{ position: "fixed", right: 0, top: 0, padding: "10px 0 0 0", backgroundColor: "rgba(255, 255, 255, 0.8)", width: "100vw" }}>
+      <div style={{ position: "fixed", right: 0, top: 0, padding: "10px 0 0 0", backgroundColor: "rgba(0, 0, 0, 0.35)", width: "100vw" }}>
         <h1 style={{ marginLeft: 20, textAlign: "left" }} >
-          <a href="#home" style={{ color: "black" }}>ICY POLAR</a>
+          <a href="#home" style={{ color: "white" }}>VAN GOGH</a>
           <Account
             address={address}
             IS_LAUNCH_BUY={IS_LAUNCH_BUY}
-            IS_PRESALE_BUY={IS_PRESALE_BUY}
             // localProvider={localProvider}
             // userSigner={userSigner}
             mainnetProvider={mainnetProvider}
