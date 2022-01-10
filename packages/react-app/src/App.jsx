@@ -35,7 +35,7 @@ const targetNetwork = NETWORKS.mainnet; // <------- select your target frontend 
 // 😬 Sorry for all the console logging
 const DEBUG = false;
 const NETWORKCHECK = false;
-const IS_LAUNCH_BUY = true;
+const IS_LAUNCH_BUY = false;
 let PRICE = 0.08;
 let MAX_MINT = 5;
 
@@ -468,53 +468,23 @@ function App(props) {
                       <img style={{ height:"82vh"}} src="hero.jpg"/>
                     </div> */}
               <div className="section1" id="home">
-                <Row type="flex" justify="center" align="middle">
-                  <Col lg={8} xs={10}>
-                    <h1 className="title">
-                      Van Gogh's<br></br>Expressionism
-                    </h1>
-                    <h2 className="subtitle">
-                      By Degen Van Gogh
-                    </h2>
-                    <p className="subtitle">An alienated and outcasted Artist</p>
-                  </Col>
-                  <Col lg={12} xs={10}>
-                    <Image className="van-gogh-bg" preview={false} src={require('./hero-vangogh.png')} />
-                  </Col>
+                <Row type="flex" align="middle" className="blankSection">
                 </Row>
               </div>
 
-              {/* <div className="section" >
-                <Row justify="center">
-                  <Col>
-                    <div className="container" >
-                      <Image className="van-gogh-bg" preview={false} src={require('./greyBG_dome.png')} id="mint" />
-                      <div className="centered" >
-                        {mintDisplay}
-                      </div>
-                    </div>
-                  </Col>
-
-                </Row>
-              </div> */}
               <span id="about"></span>
               <div className="section">
                 <Row justify="center">
                   <Col>
-                    <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
-                      Van Gogh's<br></br>Expressionism
+                    <h1 style={{ fontSize: "15rem", textAlign: "center" }}>
+                      ICY POLAR
                     </h1>
                   </Col>
                 </Row>
-                <Row justify="center">
-                  <Col lg={7} xs={14}>
-                    <p className="verticalAlignText">
-                      Van Gogh's Expressionism is about the
-                      struggles of being an artist. Van Gogh
-                      himself was torn by mental
-                      illness, emotions, passion, and distress.
-                    </p>
-                  </Col>
+              </div>
+
+              <div className="section">
+                <Row type="flex" align="middle" className="blankSection">
                 </Row>
               </div>
 
@@ -523,20 +493,17 @@ function App(props) {
                 <Row justify="center">
                   <Col>
                     <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
-                      Collection
+                      <Image className="headerIcon" preview={false} src={require('./ice.png')} />
+                      WHAT IS ICY POLAR
                     </h1>
                   </Col>
                 </Row>
                 <Row justify="center">
-                  <Col lg={7} xs={14}>
+                  <Col lg={14} xs={14} className="justify">
                     <p className="verticalAlignText">
-                      Van Gogh's Expressionism artwork
-                      collection is a depiction of mental
-                      illnesses in colors and its severity,
+                      Icy Polar is a collection of 3,000 unqiue and randomly generated pixel polar bear. <br></br><br></br>
 
-                      Degen Van Gogh hopes to spread the awareness
-                      of mental illnesses and always to
-                      treat people with kindness
+                      Launching on Ethereum (ETH) blockchain, our vision is to create a WELCOMING and TIGHT knitted community offering affordable & high-quality art while constantly provide our community the chance to participate in on-going raffles to win high value NFTs.
                     </p>
                   </Col>
                 </Row>
@@ -547,225 +514,222 @@ function App(props) {
                 <Row justify="center">
                   <Col>
                     <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
-                      Mint
+                      <Image className="headerIcon" preview={false} src={require('./disk.png')} />
+                      HOW TO MINT
+                    </h1>
+                  </Col>
+                </Row>
+                <Row justify="center">
+                  <Col lg={14} xs={14} className="justify">
+                    <p className="verticalAlignText">
+                      Minting will be stealth; where first 1000 supply of mint will be FREE to mint. <br></br><br></br>
+                      FREE mint is cap at 5/tx <br></br><br></br><br></br>
+                      Subsequent mint will be price at 0.016969ETH capped at 10/tx <br></br><br></br>
+                    </p>
+                  </Col>
+                </Row>
+              </div>
+
+              <span id="mint"></span>
+              <div className="section">
+
+                <Row justify="center">
+                  <Image className="headerIcon" preview={false} src={require('./roadmap.png')} />
+                  <Col>
+                    <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
+                      ROADMAP
                     </h1>
                   </Col>
                 </Row>
                 <Row justify="center">
                   <Col>
-                    {mintDisplay}
+                    <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
+                      PHASE 1
+                    </h1>
+                  </Col>
+                </Row>
+                <Row justify="center">
+                  <Col lg={14} xs={14} className="justify">
+                    <p className="verticalAlignText">
+                      - Website, Discord, Twitter Live <br></br><br></br>
+                      - Community outreach <br></br><br></br>
+                      - Stealth launch (Minting Live)
+                    </p>
+                  </Col>
+                </Row>
+                <Row justify="center">
+                  <Col>
+                    <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
+                      PHASE 2
+                    </h1>
+                  </Col>
+                </Row>
+                <Row justify="center">
+                  <Col lg={14} xs={14} className="justify">
+                    <p className="verticalAlignText">
+                      -Post Sell Out:<br></br><br></br><br></br><br></br>
+
+                      - Depoly staking contract; launching of $ICY token<br></br><br></br>
+                      -  Listing on Rarity.tools<br></br><br></br>
+                      - Initialized Liquidity Pool for $ICY<br></br><br></br>
+                      - 10x Icy Polar Giveaway <br></br><br></br>
+                      - We will be putting a % of proceed into the community wallet
+                    </p>
+                  </Col>
+                </Row>
+                <Row justify="center">
+                  <Col>
+                    <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
+                      PHASE 3
+                    </h1>
+                  </Col>
+                </Row>
+                <Row justify="center">
+                  <Col lg={14} xs={14} className="justify">
+                    <p className="verticalAlignText">
+                      - Roll out Gen 1 NFT mintable with $ICY <br></br><br></br>
+                      - Holding Gen 1 NFT give access to enter hight value NFT giveaway <br></br><br></br>
+                      - Inject secondary market royalites into $ICY liquidity pool <br></br><br></br>
+                      - Extend into the metaverse; land purchase? TBA
+                    </p>
                   </Col>
                 </Row>
               </div>
-            </div>
 
-            <span id="sneak"></span>
-            <div className="section">
-              <Row justify="center">
-                <Col>
-                  <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
-                    Sneak Peeks
-                  </h1>
-                </Col>
-              </Row>
-              <Row justify="center">
-                <Col lg={7} xs={14}>
-                  <p className="verticalAlignText">
-                    Studies have shown that creative arts can be used as a form of therapy to cope
-                    and convert these experiences into artistic expressions
-                  </p>
-                </Col>
-              </Row>
-            </div>
+              <span id="mint"></span>
+              <div className="section">
 
-            <div className="section">
-              <Row justify="center">
-                <Col>
-                  <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
-                    Schizophrenia
-                  </h1>
-                </Col>
-              </Row>
-              <Row justify="center">
-                <Col lg={7} xs={14}>
-                  <p className="verticalAlignText">
-                    Schizophrenics preferred green less but
-                    brown more
-                  </p>
-                </Col>
-              </Row>
-            </div>
-            <div className="section">
-              <Row justify="center">
-                <Col>
-                  {/* <Image className="sneakpeek" preview={false} src={require('./Schizophrenia.jpg')} /> */}
-                </Col>
-              </Row>
-            </div>
-
-
-            <div className="section">
-              <Row justify="center">
-                <Col>
-                  <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
-                    Depression
-                  </h1>
-                </Col>
-              </Row>
-              <Row justify="center">
-                <Col lg={7} xs={14}>
-                  <p className="verticalAlignText">
-                    People with anxiety and depression are
-                    most likely to use a shade of gray to
-                    represent their mental state
-                  </p>
-                </Col>
-              </Row>
-            </div>
-            <div className="section">
-              <Row justify="center">
-                <Col>
-                  {/* <Image className="sneakpeek" preview={false} src={require('./depression.jpg')} /> */}
-                </Col>
-              </Row>
-            </div>
-
-            <div className="section">
-              <Row justify="center">
-                <Col>
-                  <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
-                    Bi-Polar<br></br>Disorder
-                  </h1>
-                </Col>
-              </Row>
-              <Row justify="center">
-                <Col lg={7} xs={14}>
-                  <p className="verticalAlignText">
-                    People with Bi-polar disorders experienced
-                    changes one or more of their five primary
-                    senses during a manic episode
-
-                    Colors were brighter and more vibrant
-                  </p>
-                </Col>
-              </Row>
-            </div>
-            <div className="section">
-              <Row justify="center">
-                <Col>
-                  {/* <Image className="sneakpeek" preview={false} src={require('./bi.jpg')} /> */}
-                </Col>
-              </Row>
-            </div>
-
-            <div className="section">
-              <Row justify="center">
-                <Col>
-                  <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
-                    Obsessive-
-                    Compulsive<br></br>
-                    Disorder
-                  </h1>
-                </Col>
-              </Row>
-              <Row justify="center">
-                <Col lg={7} xs={14}>
-                  <p className="verticalAlignText">
-                    People with OCD feared red.
-                    Red can have an association with blood,
-                    violence, death, etc.
-                  </p>
-                </Col>
-              </Row>
-            </div>
-            <div className="section">
-              <Row justify="center">
-                <Col>
-                  {/* <Image className="sneakpeek" preview={false} src={require('./ocd.jpg')} /> */}
-                </Col>
-              </Row>
-            </div>
-
-            <div className="section">
-              <Row justify="center">
-                <Col>
-                  <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
-                    Post-Traumatic<br></br>Stress Disorder
-                  </h1>
-                </Col>
-              </Row>
-              <Row justify="center">
-                <Col lg={7} xs={14}>
-                  <p className="verticalAlignText">
-                    People with post-traumatic
-                    stress disorder (PTSD) preferred the color green
-                  </p>
-                </Col>
-              </Row>
-            </div>
-            <div className="section">
-              <Row justify="center">
-                <Col>
-                  {/* <Image className="sneakpeek" preview={false} src={require('./ptsd.jpg')} /> */}
-                </Col>
-              </Row>
-            </div>
-
-            <div className="section">
-              <Row justify="center">
-                <Col>
-                  <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
-                    Paranoia
-                  </h1>
-                </Col>
-              </Row>
-              <Row justify="center">
-                <Col lg={7} xs={14}>
-                  <p className="verticalAlignText">
-                    Orange symbolizes paranoia and sudden fits of violence
-                  </p>
-                </Col>
-              </Row>
-            </div>
-            <div className="section">
-              <Row justify="center">
-                <Col>
-                  {/* <Image className="sneakpeek" preview={false} src={require('./paranoia.jpg')} /> */}
-                </Col>
-              </Row>
-            </div>
-
-
-            <span id="next"></span>
-            <div className="section">
-              <Row justify="center">
-                <Col>
-                  <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
-                    What's Next?
-                  </h1>
-                </Col>
-              </Row>
-              <Row justify="center">
-                  <Col lg={7} xs={14}>
-                    <p className="verticalAlignText">
-                      Holder will be able to access a dashboard where they can submit their PFPs for me to integrate your minted Van Gogh artwork with your PFPs.<br></br><br></br>
-                      NFTs will be airdropped to you as follow: <br></br><br></br>
-                      1. PFP - Your minted artwork as background with your submitted PFP<br></br><br></br>
-                      2. Twitter Banner - Your minted artwork in Twitter Banner size with or without your submitted PFP<br></br>
-                    </p>
-                    <br></br>
+                <Row justify="center">
+                  <Col>
+                    <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
+                      FAQ
+                    </h1>
+                    <Row justify="center">
+                      <Col>
+                        <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
+                          WEN OFFICIAL LAUNCH?
+                        </h1>
+                      </Col>
+                      <Col lg={14} xs={14} className="justify">
+                        <p className="verticalAlignText">
+                          Mint will be a stealth launch.
+                        </p>
+                      </Col>
+                    </Row>
+                    <Row justify="center">
+                      <Col>
+                        <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
+                          MINT PRICE?
+                        </h1>
+                      </Col>
+                      </Row>
+                      <Row>
+                      <Col lg={14} xs={14} className="justify">
+                        <p className="verticalAlignText">
+                        First 1000 Mints = FREE<br></br>
+                        Remaining Mints = 0.016969ETH
+                        </p>
+                      </Col>
+                    </Row>
+                    <Row justify="center">
+                      <Col>
+                        <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
+                          TOTAL SUPPLY?
+                        </h1>
+                      </Col>
+                      </Row>
+                      <Row>
+                      <Col lg={14} xs={14} className="justify">
+                        <p className="verticalAlignText">
+                        3,000 (10 reserved for giveway)
+                        </p>
+                      </Col>
+                    </Row>
+                    <Row justify="center">
+                      <Col>
+                        <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
+                          HOW MANY CAN I MINT?
+                        </h1>
+                      </Col>
+                      </Row>
+                      <Row>
+                      <Col lg={14} xs={14} className="justify">
+                        <p className="verticalAlignText">
+                        First 1000 Mints = 5/tx<br></br>
+                        Remaining Mints = 10/tx
+                        </p>
+                      </Col>
+                    </Row>
+                  </Col>
+                  <Col>
+                    <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
+                      FAQ
+                    </h1>
+                    <Row justify="center">
+                      <Col>
+                        <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
+                          WEN OFFICIAL LAUNCH?
+                        </h1>
+                      </Col>
+                      <Col lg={14} xs={14} className="justify">
+                        <p className="verticalAlignText">
+                          Mint will be a stealth launch.
+                        </p>
+                      </Col>
+                    </Row>
+                    <Row justify="center">
+                      <Col>
+                        <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
+                          MINT PRICE?
+                        </h1>
+                      </Col>
+                      </Row>
+                      <Row>
+                      <Col lg={14} xs={14} className="justify">
+                        <p className="verticalAlignText">
+                        First 1000 Mints = FREE<br></br>
+                        Remaining Mints = 0.016969ETH
+                        </p>
+                      </Col>
+                    </Row>
+                    <Row justify="center">
+                      <Col>
+                        <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
+                          TOTAL SUPPLY?
+                        </h1>
+                      </Col>
+                      </Row>
+                      <Row>
+                      <Col lg={14} xs={14} className="justify">
+                        <p className="verticalAlignText">
+                        3,000 (10 reserved for giveway)
+                        </p>
+                      </Col>
+                    </Row>
+                    <Row justify="center">
+                      <Col>
+                        <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
+                          HOW MANY CAN I MINT?
+                        </h1>
+                      </Col>
+                      </Row>
+                      <Row>
+                      <Col lg={14} xs={14} className="justify">
+                        <p className="verticalAlignText">
+                        First 1000 Mints = 5/tx<br></br>
+                        Remaining Mints = 10/tx
+                        </p>
+                      </Col>
+                    </Row>
                   </Col>
                 </Row>
-              <Row justify="center">
-                <Col>
-                  <h2 style={{ fontSize: "3rem", textAlign: "center" }}>
-                    PFP x Van Gogh Collection
-                  </h2>
-                </Col>
-              </Row>
+
+              </div>
             </div>
 
-            
+
+
+
             <div className="section">
               <Row>
               </Row>
