@@ -36,7 +36,7 @@ const targetNetwork = NETWORKS.rinkeby; // <------- select your target frontend 
 // 😬 Sorry for all the console logging
 const DEBUG = false;
 const NETWORKCHECK = false;
-const IS_PRESALE_BUY = true;
+const IS_PRESALE_BUY = false;
 const IS_LAUNCH_BUY = false;
 let PRICE = 0.06;
 let MAX_MINT = 5;
@@ -673,8 +673,8 @@ function App(props) {
                 <Row justify="center">
                   <Col span={14}>
                     <p className="verticalAlignText">
-                      Welcome to The Dome, a community space that aim to bridge the metaverse and real world with our series of randomly generated non-fungible tokens (NFTs). <br></br><br></br>
-                      The Dome hopes to expand its community with synergistic mechanics and collaboration between both Web3 and IRL communities. <br></br><br></br>The Dome will kick start its collection with 10,000 variegated plant; each granting its holder exclusive utility within the metaverse and the real world. <br></br><br></br>Each The Dome NFT also passively generate Oxygen which can be use to create new life within the metaverse. <br></br><br></br>Start breathing on the blockchain within The Dome
+                      Welcome to Icy Polar, a community space that aim to bridge the metaverse and real world with our series of randomly generated non-fungible tokens (NFTs). <br></br><br></br>
+                      Icy Polar hopes to expand its community with synergistic mechanics and collaboration between both Web3 and IRL communities. <br></br><br></br>Icy Polar will kick start its collection with 10,000 variegated plant; each granting its holder exclusive utility within the metaverse and the real world. <br></br><br></br>Each Icy Polar NFT also passively generate Oxygen which can be use to create new life within the metaverse. <br></br><br></br>Start breathing on the blockchain within Icy Polar
                     </p>
                   </Col>
                   <Col>
@@ -712,7 +712,7 @@ function App(props) {
                       </Col>
                       <Col span={15} style={{ alignSelf: "center" }}>
                         <p className="verticalAlignText">
-                          Launching The Dome Community <br></br>
+                          Launching Icy Polar Community <br></br>
                           Announce Whitelist participation events <br></br>
                           Community engagement; first AMA on discord server <br></br>
                           Community engagement; voting on royalties % <br></br>
@@ -727,7 +727,7 @@ function App(props) {
                       <Col span={15} style={{ alignSelf: "center" }}>
                         <p className="verticalAlignText">
                           30 <span className="ether">Ξ</span> committed to purchase first batch of NFT assets <br></br>
-                          Launch The Dome trivia season 1 with 4 <span className="ether">Ξ</span> prize pool <br></br>
+                          Launch Icy Polar trivia season 1 with 4 <span className="ether">Ξ</span> prize pool <br></br>
                           5 Lucky community members to receive Philodendome airdrop <br></br>
                           Initial guerrilla/social media marketing <br></br>
                           Special IRL giveaway
@@ -741,9 +741,9 @@ function App(props) {
                       <Col span={15} style={{ alignSelf: "center" }}>
                         <p className="verticalAlignText">
                           30 <span className="ether">Ξ</span> committed to purchase second batch of NFT assets <br></br>
-                          The Dome merchandise development <br></br>
+                          Icy Polar merchandise development <br></br>
                           Maintain guerrilla/social media marketing <br></br>
-                          The Dome trivia season 2 with 5 <span className="ether">Ξ</span> prize pool <br></br>
+                          Icy Polar trivia season 2 with 5 <span className="ether">Ξ</span> prize pool <br></br>
                           Community engagement; 2nd AMA on discord server
                         </p>
                       </Col>
@@ -756,7 +756,7 @@ function App(props) {
                         <p className="verticalAlignText">
                           35 <span className="ether">Ξ</span> committed to purchase third batch of NFT assets <br></br>
                           Purchase 3x3 plot of land on SANDBOX <br></br>
-                          The Dome trivia season 3 with 8 ETH prize pool <br></br>
+                          Icy Polar trivia season 3 with 8 ETH prize pool <br></br>
                           NYC takeover <br></br>
                           Expand IRL utility partnerships
                         </p>
@@ -769,7 +769,7 @@ function App(props) {
                       <Col span={15} style={{ alignSelf: "center" }}>
                         <p className="verticalAlignText">
                           40 <span className="ether">Ξ</span> committed to purchase last batch of NFT assets
-                          The Dome Merch Pop-Up
+                          Icy Polar Merch Pop-Up
                           Prepare fractionalization of NFT assets
                           Initial PP2E game development
                         </p>
@@ -794,11 +794,11 @@ function App(props) {
                 <Row justify="center">
                   <Col span={19}>
                     <p className="verticalAlignText">
-                      The Dome community will further extend our reach into the real world bringing our holder an array of IRL utility from partnership with varies institutes. <br></br><br></br>
+                      Icy Polar community will further extend our reach into the real world bringing our holder an array of IRL utility from partnership with varies institutes. <br></br><br></br>
                       
                       A series of virtual and IRL events will be roll out; starting with a charity run (more details to be finalize), followed by a virtual auction of our one of ones held in our very own land on The Sandbox. <br></br><br></br>
                       
-                      With our ever-growing community the possibility we are able to achieve are limitless; so buckled up and enjoy what The Dome have installed for all of you degen!
+                      With our ever-growing community the possibility we are able to achieve are limitless; so buckled up and enjoy what Icy Polar have installed for all of you degen!
                     </p>
                   </Col>
                 </Row>
@@ -821,7 +821,7 @@ function App(props) {
                   <Col lg={7} xs={14}>
                     <p className="verticalAlignText">
                     A Genesis Philodendome is your token into this community. 
-                    Stay active, make connection, and earn $Oxygen daily.Unlock The Dome's full potential together as a community. 
+                    Stay active, make connection, and earn $Oxygen daily.Unlock Icy Polar's full potential together as a community. 
                     </p>
                   </Col>
                 </Row>
@@ -843,7 +843,7 @@ function App(props) {
                 <Row justify="center">
                   <Col lg={7} xs={14}>
                     <p className="verticalAlignText">
-                    The Dome will be your portal that bridge into the real world, bringing you tangible real life benefits. 
+                    Icy Polar will be your portal that bridge into the real world, bringing you tangible real life benefits. 
                     Allowing you to reap benefits from both metaverse and IRL.  
                     </p>
                   </Col>
@@ -886,7 +886,7 @@ function App(props) {
                       <p style={{ fontSize: "2rem", textAlign: "left", marginBottom: "0px"}}>
                       Phase I 
                       </p>
-                      <span style={{ fontSize: "2rem", textAlign: "left" }}>THE DOME
+                      <span style={{ fontSize: "2rem", textAlign: "left" }}>ICY POLAR
                       </span>
                     </h2>
                   </Col>
@@ -974,7 +974,7 @@ function App(props) {
                 <Row justify="center">
                   <Col>
                     <h2 style={{ fontSize: "5rem", textAlign: "center" }}>
-                      THE DOME TEAM
+                      ICY POLAR TEAM
                     </h2>
                   </Col>
                 </Row>
@@ -1046,7 +1046,7 @@ function App(props) {
       {/* 👨‍💼 Your account is in the top right with a wallet at connect options */}
       <div style={{ position: "fixed", right: 0, top: 0, padding: "10px 0 0 0", backgroundColor: "rgba(255, 255, 255, 0.8)", width: "100vw" }}>
         <h1 style={{ marginLeft: 20, textAlign: "left" }} >
-          <a href="#home" style={{ color: "black" }}>THE DOME</a>
+          <a href="#home" style={{ color: "black" }}>ICY POLAR</a>
           <Account
             address={address}
             IS_LAUNCH_BUY={IS_LAUNCH_BUY}
