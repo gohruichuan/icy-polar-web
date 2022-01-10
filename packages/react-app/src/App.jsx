@@ -23,7 +23,6 @@ import {
   useOnBlock,
   useUserSigner,
 } from "./hooks";
-import ReCAPTCHA from "react-google-recaptcha";
 var CryptoJS = require("crypto-js");
 const crypto = require("crypto");
 require('dotenv').config()
@@ -31,14 +30,13 @@ var jwt = require('jsonwebtoken');
 
 const { ethers } = require("ethers");
 /// 📡 What chain are your contracts deployed to?
-const targetNetwork = NETWORKS.rinkeby; // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
+const targetNetwork = NETWORKS.mainnet; // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
 
 // 😬 Sorry for all the console logging
 const DEBUG = false;
 const NETWORKCHECK = false;
-const IS_PRESALE_BUY = false;
-const IS_LAUNCH_BUY = false;
-let PRICE = 0.06;
+const IS_LAUNCH_BUY = true;
+let PRICE = 0.08;
 let MAX_MINT = 5;
 
 // 🛰 providers
@@ -143,12 +141,12 @@ function App(props) {
   // ]);
 
   // keep track of a variable from the contract in the local React state:
-  // const balance = useContractReader(readContracts, "IcyPolar", "balanceOf", [address]);
+  // const balance = useContractReader(readContracts, "VanGoghExpressionism", "balanceOf", [address]);
   // console.log("🤗 balance:", balance);
 
 
   // // 📟 Listen for broadcast events
-  // const transferEvents = useEventListener(readContracts, "IcyPolar", "Transfer", localProvider, 1);
+  // const transferEvents = useEventListener(readContracts, "VanGoghExpressionism", "Transfer", localProvider, 1);
   // console.log("📟 Transfer events:", transferEvents);
 
   //
@@ -157,7 +155,7 @@ function App(props) {
   // const yourBalance = balance && balance.toNumber && balance.toNumber();
   // console.log("🤗 yourBalance:", yourBalance);
 
-  // const totalSupplyBigNum = useContractReader(readContracts, "IcyPolar", "totalSupply");
+  // const totalSupplyBigNum = useContractReader(readContracts, "VanGoghExpressionism", "totalSupply");
   // console.log("CALLED INFURA");
   // const totalSupply = totalSupplyBigNum && totalSupplyBigNum.toNumber();
 
@@ -206,15 +204,81 @@ function App(props) {
   // ]);
 
   // const totalSupply = new Promise((resolve, reject) => {
-  //    readContracts && readContracts.IcyPolar && readContracts.IcyPolar.totalSupply().then(result => result.toNumber());
+  //    readContracts && readContracts.VanGoghExpressionism && readContracts.VanGoghExpressionism.totalSupply().then(result => result.toNumber());
   // });
 
-  //  let totalSupply = readContracts && readContracts.IcyPolar && readContracts.IcyPolar.totalSupply().then(function(result) {
+  //  let totalSupply = readContracts && readContracts.VanGoghExpressionism && readContracts.VanGoghExpressionism.totalSupply().then(function(result) {
   //   return result && result.toNumber();
   //  });
 
 
   // totalSupply && totalSupply.then( res => {return res});
+
+  let networkDisplay = "";
+  if (NETWORKCHECK && localChainId && selectedChainId && localChainId !== selectedChainId) {
+    const networkSelected = NETWORK(selectedChainId);
+    const networkLocal = NETWORK(localChainId);
+    if (selectedChainId === 1337 && localChainId === 31337) {
+      networkDisplay = (
+        <div style={{ zIndex: 2, position: "absolute", right: 0, top: 60, padding: 16 }}>
+          <Alert
+            message="⚠️ Wrong Network ID"
+            description={
+              <div>
+                You have <b>chain id 1337</b> for localhost and you need to change it to <b>31337</b> to work with
+                HardHat.
+                <div>(MetaMask -&gt; Settings -&gt; Networks -&gt; Chain ID -&gt; 31337)</div>
+              </div>
+            }
+            type="error"
+            closable={false}
+          />
+        </div>
+      );
+    } else {
+      networkDisplay = (
+        <div style={{ zIndex: 2, position: "absolute", right: 0, top: 60, padding: 16 }}>
+          <Alert
+            message="⚠️ Wrong Network"
+            description={
+              <div>
+                You have <b>{networkSelected && networkSelected.name}</b> selected and you need to be on{" "}
+                <Button
+                  onClick={async () => {
+                    const ethereum = window.ethereum;
+                    const data = [
+                      {
+                        chainId: "0x" + targetNetwork.chainId.toString(16),
+                        chainName: targetNetwork.name,
+                        nativeCurrency: targetNetwork.nativeCurrency,
+                        rpcUrls: [targetNetwork.rpcUrl],
+                        blockExplorerUrls: [targetNetwork.blockExplorer],
+                      },
+                    ];
+                    console.log("data", data);
+                    const tx = await ethereum.request({ method: "wallet_addEthereumChain", params: data }).catch();
+                    if (tx) {
+                      console.log(tx);
+                    }
+                  }}
+                >
+                  <b>{networkLocal && networkLocal.name}</b>
+                </Button>.
+              </div>
+            }
+            type="error"
+            closable={false}
+          />
+        </div>
+      );
+    }
+  } else {
+    networkDisplay = (
+      <div style={{ zIndex: -1, position: "absolute", right: 154, top: 28, padding: 16, color: targetNetwork.color }}>
+        {targetNetwork.name}
+      </div>
+    );
+  }
 
   const loadWeb3Modal = useCallback(async () => {
     const provider = await web3Modal.connect();
@@ -239,64 +303,14 @@ function App(props) {
 
   useEffect(() => {
     // console.warn("web3Modal.cachedProvider ", web3Modal.cachedProvider);
-    if (web3Modal.cachedProvider && (IS_PRESALE_BUY || IS_LAUNCH_BUY)) {
+    if (web3Modal.cachedProvider && IS_LAUNCH_BUY) {
       loadWeb3Modal();
     }
   }, [loadWeb3Modal]);
 
-
-  const genToken = () => {
-    var token = jwt.sign({
-      data: crypto.randomBytes(9).toString("base64"),
-      iat: (new Date().getTime()) / 1000,
-      exp: (new Date().getTime() + 5 * 1000) / 1000,
-    }, process.env.REACT_APP_API_SECRET_KEY);
-    return token;
-  }
-  const validateWhitelist = async (address, tokenQuantity) => {
-    const requestUrl = "https://api-dome-nft-whitelist.herokuapp.com/check/whitelist/" + address + "/" + tokenQuantity;
-    // const requestUrl = "http://localhost:4000/check/whitelist/" + address + "/" + tokenQuantity;
-    const getData = await fetch(requestUrl, {
-      method: "GET",
-      headers: {
-        'Authorization': 'Bearer ' + genToken()
-      }
-    });
-    let data = await getData.json();
-    return data;
-  }
-
-  const successfulMint = async (address, tokenQuantity) => {
-    const requestUrl = "https://api-dome-nft-whitelist.herokuapp.com/successful/mint/" + address + "/" + tokenQuantity;
-    // const requestUrl = "http://localhost:4000/successful/mint/" + address + "/" + tokenQuantity;
-    const getData = await fetch(requestUrl, {
-      method: "GET",
-      headers: {
-        'Authorization': 'Bearer ' + genToken()
-      }
-    });
-    let data = await getData.json();
-    return data;
-  }
-
-  const failMint = async (address) => {
-    const requestUrl = "https://api-dome-nft-whitelist.herokuapp.com/fail/mint/" + address;
-    // const requestUrl = "http://localhost:4000/fail/mint/" + address;
-    const getData = await fetch(requestUrl, {
-      method: "GET",
-      headers: {
-        'Authorization': 'Bearer ' + genToken()
-      }
-    })
-    let data = await getData.json();
-    return data;
-  }
-
   let [whitelistMessage, setWhitelistMessage] = useState();
 
   let [tokenQuantity, setTokenQuantity] = useState(1);
-
-  let [isCaptchaVerified, setCaptchaVerified] = useState(false);
 
   let [totalSupply, setTotalSupply] = useState();
 
@@ -318,58 +332,32 @@ function App(props) {
       </h5>
     )
   }
-  // let [isCaptchaVerified, setCaptchaVerified] = useState(false); // default tokenQuantity
 
-
-  (IS_PRESALE_BUY || IS_LAUNCH_BUY) && !totalSupply && readContracts && readContracts.IcyPolar && readContracts.IcyPolar.totalSupply().then(result => setTotalSupply(result.toNumber()));
+  IS_LAUNCH_BUY && !totalSupply && readContracts && readContracts.VanGoghExpressionism && readContracts.VanGoghExpressionism.totalSupply().then(result => setTotalSupply(result.toNumber()));
 
   function refreshTotalSupply() {
-    (IS_PRESALE_BUY || IS_LAUNCH_BUY) && readContracts && readContracts.IcyPolar && readContracts.IcyPolar.totalSupply().then(result => setTotalSupply(result.toNumber()));
+    IS_LAUNCH_BUY && readContracts && readContracts.VanGoghExpressionism && readContracts.VanGoghExpressionism.totalSupply().then(result => setTotalSupply(result.toNumber()));
   }
-
-  function onChange(value) {
-    console.log("Captcha value:", value);
-    if (value) {
-      setCaptchaVerified(true);
-    }
-  }
-
 
   let mintDisplay = "";
-  if (!IS_LAUNCH_BUY && !IS_PRESALE_BUY) {
+  if (!IS_LAUNCH_BUY) {
     mintDisplay = (
       <span>
         <h1 style={{ marginTop: 50, fontSize: "3rem" }}> Minting Coming Soon...</h1>
-        <a href="https://discord.gg/H5SvcdehF3"><h1>Get whitelisted for our presale <FontAwesomeIcon icon={faExternalLinkAlt} /></h1></a>
-        <h2 style={{ fontSize: "2rem" }}>Presale Mint Price: 0.04<span className="ether">Ξ</span> each</h2>
-        <h2 style={{ fontSize: "2rem" }}>Launch Mint Price: 0.06<span className="ether">Ξ</span> each</h2>
+        {/* <h2 style={{ fontSize: "2rem" }}>Mint Price: 0.08<span className="ether">Ξ</span> each</h2> */}
       </span>
     )
   } else {
 
-    if (IS_PRESALE_BUY) {
-      MAX_MINT = 2;
-      PRICE = 0.04;
-    }
-
     mintDisplay = (
-      <div style={{ margin: "auto", marginTop: 32, paddingBottom: 32 }} className="mint" >
-        <h1 style={{ fontSize: "5rem", margin: 0 }}> {totalSupply} / 10,000 </h1>
-        <h1 style={{ margin: 0 }}>Philodendomes Minted</h1>
+      <div style={{ margin: "auto", marginTop: 32, paddingBottom: 32, textAlign: "center" }} className="mint" >
+        <h1 style={{ fontSize: "5rem", margin: 0 }}> {totalSupply} / 1,000 Minted</h1>
         <br></br>
-        <h2>Philodendome {PRICE} ETH Each</h2>
+        <h2 style={{ fontSize: "3rem", margin: 0 }}>{PRICE}<span className="ether">Ξ</span> Each</h2>
         <Image className="scalable-image" preview={false} src={require('./minus.png')} onClick={_ => {
           console.warn("minus!");
-          let min = 0;
-          let max = 0;
-
-          if (IS_PRESALE_BUY) {
-            min = 1;
-            max = 2;
-          } else {
-            min = 1;
-            max = 5;
-          }
+          let min = 1;
+          let max = 50;
 
           let _tempQuantity = tokenQuantity - 1;
           let value = Math.max(Number(min), Math.min(Number(max), Number(_tempQuantity)));
@@ -378,57 +366,34 @@ function App(props) {
         }} />
         <Input placeholder="Quantity" maxLength={3} defaultValue={tokenQuantity} value={tokenQuantity} className="inputMint" onChange={event => {
 
-          let min;
-          let max;
+          let min = 1;
+          let max = 50;
           let value = event.target.value;
-          if (IS_PRESALE_BUY) {
-            min = 1;
-            max = 2;
-          } else {
-            min = 1;
-            max = 5;
-          }
 
           value = Math.max(Number(min), Math.min(Number(max), Number(value)));
           setTokenQuantity(value)
         }} />
         <Image className="scalable-image" preview={false} src={require('./plus.png')} onClick={_ => {
           console.warn("plus!");
-          let min = 0;
-          let max = 0;
+          let min = 1;
+          let max = 50;
 
-          if (IS_PRESALE_BUY) {
-            min = 1;
-            max = 2;
-          } else {
-            min = 1;
-            max = 5;
-          }
           let _tempQuantity = tokenQuantity + 1;
           let value = Math.max(Number(min), Math.min(Number(max), Number(_tempQuantity)));
           console.warn("value ", value);
           setTokenQuantity(value);
         }} />
-        {IS_PRESALE_BUY ? (
-          <h3>
-            <span>Max {MAX_MINT} mints per Whitelisted Wallet Address</span>
-          </h3>
-        ) : (
-          <h3>
-            <span>Max {MAX_MINT} mints per transaction</span>
-          </h3>
-        )}
+
+        {/* <h3>
+          <span>Max {MAX_MINT} mints per transaction</span>
+        </h3> */}
         {/* <br></br>
         <h2>
           <span >Total {(tokenQuantity * PRICE).toFixed(4)} ETH</span>
         </h2> */}
 
-        <ReCAPTCHA style={{ textAlign: "-webkit-center" }}
-          sitekey="6LeqU6QdAAAAALJi2OFNbsf1pS8Q9nArkJ03Mm7A"
-          onChange={onChange}
-        />
         <br></br>
-        <Button disabled={!isCaptchaVerified || isLoading} className="mintBtn" size="large"
+        <Button className="mintBtn" size="large"
           onClick={() => {
             if (tokenQuantity === 0) {
               setWhitelistMessage(
@@ -438,10 +403,10 @@ function App(props) {
               );
               return;
             }
-            if (!address && (IS_PRESALE_BUY || IS_LAUNCH_BUY)) {
+            if (!address && IS_LAUNCH_BUY) {
               loadWeb3Modal();
             } else {
-              if (!IS_PRESALE_BUY && IS_LAUNCH_BUY) { // Launch
+              if (IS_LAUNCH_BUY) { // Launch
                 setIsLoading(true);
                 let etherPrice = (tokenQuantity * PRICE);
                 console.warn("LAUNCH MINTING!");
@@ -449,101 +414,25 @@ function App(props) {
                 console.warn("etherPrice ! ", etherPrice);
 
                 etherPrice = Math.round(etherPrice * 1e4) / 1e4;
-                tx(writeContracts.IcyPolar.buy(tokenQuantity, { value: ethers.utils.parseEther(etherPrice.toString()) }),
+                tx(writeContracts.VanGoghExpressionism.buy(tokenQuantity, { value: ethers.utils.parseEther(etherPrice.toString()) }),
                   update => {
                     setIsLoading(false);
                     if (update.status === "confirmed" || update.status === 1) {
                       refreshTotalSupply();
                       setWhitelistMessage(
                         <div style={{ color: "green" }}>
-                          Successfully minted {tokenQuantity} tokens!
+                          <h2>Successfully minted {tokenQuantity} tokens!</h2>
                         </div>
                       );
                     } else if (update && (update.status !== "confirmed" && update.status !== 1 && update.status !== "sent" && update.status !== "pending")) {
                       console.warn("📡 TX FAILED");
                       setWhitelistMessage(
                         <div style={{ color: "red" }}>
-                          Failed to mint {tokenQuantity} tokens!
+                          <h2>Failed to mint {tokenQuantity} tokens!</h2>
                         </div>
                       );
                     }
                   });
-              } else if (IS_PRESALE_BUY && !IS_LAUNCH_BUY) { // PRESALE
-                setIsLoading(true);
-                const getValidateWhitelist = async () => {
-                  await validateWhitelist(address, tokenQuantity).then(res => {
-                    if (res.result === "Whitelisted") {
-                      let etherPrice = (tokenQuantity * PRICE);
-                      console.warn("PRESALE MINTING!");
-                      console.warn("tokenQuantity ! ", tokenQuantity);
-                      console.warn("etherPrice ! ", etherPrice);
-
-                      etherPrice = Math.round(etherPrice * 1e4) / 1e4;
-
-                      var bytes = CryptoJS.AES.decrypt(res.ciphertext, process.env.REACT_APP_CRYPTO_SECRET_KEY);
-                      var decrypted = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-
-                      tx(writeContracts.IcyPolar.presaleBuy(decrypted.signature, decrypted.nonce, decrypted.tokenQuantity, { value: ethers.utils.parseEther(etherPrice.toString()) }),
-                        update => {
-                          setIsLoading(false);
-
-                          console.warn("📡 Transaction Update:", update);
-                          if (update && (update.status !== "confirmed" && update.status !== 1 && update.status !== "sent" && update.status !== "pending")) {
-                            console.warn("📡 TX FAILED");
-                            failMint(address)
-                          } else if (update.status === "confirmed" || update.status === 1) {
-                            refreshTotalSupply();
-                            // const balance = useContractReader(readContracts, "IcyPolar", "balanceOf", [address]);
-                            // const yourBalance = balance && balance.toNumber && balance.toNumber();
-                            // console.warn("yourBalance ", yourBalance);
-                            // for (let tokenIndex = 0; tokenIndex < balance; tokenIndex++) {
-                            //   const tokenId = readContracts.IcyPolar.tokenOfOwnerByIndex(address, tokenIndex);
-                            //   console.warn("tokenId ", tokenId);
-                            // }
-                            successfulMint(address, decrypted.tokenQuantity).then(res => {
-                              setWhitelistMessage(
-                                <div style={{ color: "green" }}>
-                                  Successfully minted {decrypted.tokenQuantity} tokens!
-                                </div>
-                              );
-                            });
-                          }
-                        });
-                    }
-                    else if (res.result === "pending") {
-                      setWhitelistMessage(
-                        <div>
-                          Please wait while we proccess your mint!
-                        </div>
-                      );
-                    }
-                    else if (res.result === "Mint exceed limit") {
-                      setIsLoading(false);
-                      setWhitelistMessage(
-                        <div style={{ color: "red" }}>
-                          You have exceed the presale mint limit of 2
-                        </div>
-                      );
-                    }
-                    else if (res.result === "Not Whitelisted") {
-                      setIsLoading(false);
-                      setWhitelistMessage(
-                        <div style={{ color: "red" }}>
-                          Sorry! You are Not whitelisted!
-                        </div>
-                      );
-                    }
-                    else {
-                      setIsLoading(false);
-                      setWhitelistMessage(
-                        <div style={{ color: "red" }}>
-                          Failed to mint {tokenQuantity} tokens!
-                        </div>
-                      );
-                    }
-                  });
-                }
-                getValidateWhitelist();
               }
             }
           }}
@@ -561,16 +450,53 @@ function App(props) {
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
+            {/*
+                🎛 this scaffolding is full of commonly used components
+                this <Contract/> component will automatically parse your ABI
+                and give you a form to interact with it locally
+            */}
+            {/* 
+             */}
+
+            {/* <ReactFullpage
+              scrollOverflow={false}
+              anchors={['firstPage', 'secondPage', 'thirdPage']}
+              render={({ state, fullpageApi }) => {
+                return ( */}
             <div id="fullpage-wrapper">
+              {/* <div style={{position: "fixed"}}>
+                      <img style={{ height:"82vh"}} src="hero.jpg"/>
+                    </div> */}
               <div className="section1" id="home">
                 <Row type="flex" justify="center" align="middle">
-                  <Col>
+                  <Col lg={8} xs={10}>
                     <h1 className="title">
-                     ICY POLAR
+                      Van Gogh's<br></br>Expressionism
                     </h1>
+                    <h2 className="subtitle">
+                      By Degen Van Gogh
+                    </h2>
+                    <p className="subtitle">An alienated and outcasted Artist</p>
+                  </Col>
+                  <Col lg={12} xs={10}>
+                    <Image className="van-gogh-bg" preview={false} src={require('./hero-vangogh.png')} />
                   </Col>
                 </Row>
               </div>
+
+              {/* <div className="section" >
+                <Row justify="center">
+                  <Col>
+                    <div className="container" >
+                      <Image className="van-gogh-bg" preview={false} src={require('./greyBG_dome.png')} id="mint" />
+                      <div className="centered" >
+                        {mintDisplay}
+                      </div>
+                    </div>
+                  </Col>
+
+                </Row>
+              </div> */}
               <span id="about"></span>
               <div className="section">
                 <Row justify="center">
