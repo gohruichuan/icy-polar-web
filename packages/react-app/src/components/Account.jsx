@@ -118,9 +118,9 @@ export default function Account({
       {/* <span className="navLink">
         <a href="#oxy">$OXYGEN</a>
       </span> */}
-      <a style={{marginLeft: 20}} href="https://www.twitter.com/thebabygoaty" target="_blank"><FontAwesomeIcon icon={faTwitter} className="navIcon"/></a>
+      <a style={{marginLeft: 20}} href="https://twitter.com/icypolarnft" target="_blank"><FontAwesomeIcon icon={faTwitter} className="navIcon"/></a>
       <a href="https://discord.gg/U37j6e9m3X" target="_blank"><FontAwesomeIcon  icon={faDiscord} className="navIcon"/></a>
-      <a href="https://opensea.io/collection/babygoaty" target="_blank"><Image className="openseaIcon" preview={false} src={require('../opensea.png')}/> </a>
+      {/* <a href="https://opensea.io/collection/babygoaty" target="_blank"><Image className="openseaIcon" preview={false} src={require('../opensea.png')}/> </a> */}
       {display}
       {modalButtons}
     </span>
