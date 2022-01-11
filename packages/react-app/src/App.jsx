@@ -599,134 +599,128 @@ function App(props) {
               <div className="section">
 
                 <Row justify="center">
-                  <Col>
-                    <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
+                  <Col className="center">
+                    <h1 style={{ fontSize: "5rem" }}>
                       FAQ
                     </h1>
-                    <Row justify="center">
-                      <Col>
-                        <h1 style={{ fontSize: "4rem", textAlign: "center" }}>
-                          WEN OFFICIAL LAUNCH?
-                        </h1>
-                      </Col>
-                      <Col lg={14} xs={14} className="justify">
-                        <p className="verticalAlignText" style={{ fontSize: "1.5rem"}}>
-                          Mint will be a stealth launch.
-                        </p>
-                      </Col>
-                    </Row>
-                    <Row justify="center">
-                      <Col>
-                        <h1 style={{ fontSize: "4rem", textAlign: "center" }}>
-                          MINT PRICE?
-                        </h1>
-                      </Col>
-                      </Row>
-                      <Row justify="center">
-                      <Col lg={14} xs={14} className="justify">
-                        <p className="verticalAlignText" style={{ fontSize: "1.5rem"}}>
-                        First 1000 Mints = FREE<br></br><br></br>
-                        Remaining Mints = 0.016969ETH
-                        </p>
-                      </Col>
-                    </Row>
-                    <Row justify="center">
-                      <Col>
-                        <h1 style={{ fontSize: "4rem", textAlign: "center" }}>
-                          TOTAL SUPPLY?
-                        </h1>
-                      </Col>
-                      </Row>
-                      <Row justify="center">
-                      <Col lg={14} xs={14} className="justify">
-                        <p className="verticalAlignText" style={{ fontSize: "1.5rem"}}>
-                        3,000 (10 reserved for giveway)
-                        </p>
-                      </Col>
-                    </Row>
-                    <Row justify="center">
-                      <Col>
-                        <h1 style={{ fontSize: "4rem", textAlign: "center" }}>
-                          HOW MANY CAN I MINT?
-                        </h1>
-                      </Col>
-                      </Row>
-                      <Row justify="center">
-                      <Col lg={14} xs={14} className="justify">
-                        <p className="verticalAlignText" style={{ fontSize: "1.5rem"}}>
-                        First 1000 Mints = 5/tx<br></br><br></br>
-                        Remaining Mints = 10/tx
-                        </p>
-                      </Col>
-                    </Row>
-                    <Row justify="center">
-                      <Col>
-                        <h1 style={{ fontSize: "4rem", textAlign: "center" }}>
-                          WHAT IS $ICY TOKEN?
-                        </h1>
-                      </Col>
-                      </Row>
-                      <Row justify="center">
-                      <Col lg={14} xs={14} className="justify">
-                        <p className="verticalAlignText" style={{ fontSize: "1.5rem"}}>
-                        $ICY token is our backbone utility token <br></br><br></br>
-                        1 $ICY = 1 $ICY
-                        </p>
-                      </Col>
-                    </Row>
-                    <Row justify="center">
-                      <Col>
-                        <h1 style={{ fontSize: "4rem", textAlign: "center" }}>
-                          HOW TO EARN $ICY TOKEN?
-                        </h1>
-                      </Col>
-                      </Row>
-                      <Row justify="center">
-                      <Col lg={14} xs={14} className="justify">
-                        <p className="verticalAlignText" style={{ fontSize: "1.5rem"}}>
-                          Only genesis Icy Polar are able to earn $ICY token.<br></br><br></br>
-                          Each genesis Icy Polar generate 10 $ICY token daily
-                        </p>
-                      </Col>
-                    </Row>
-                    <Row justify="center">
-                      <Col>
-                        <h1 style={{ fontSize: "4rem", textAlign: "center" }}>
-                          $ICY TOKEN SUPPLY?
-                        </h1>
-                      </Col>
-                      </Row>
-                      <Row justify="center">
-                      <Col lg={14} xs={14} className="justify">
-                        <p className="verticalAlignText" style={{ fontSize: "1.5rem"}}>
-                        Total: 12,000,000<br></br><br></br>
-                        1,000,000 will be reserve in community wallet for initializing liquidity pool as well as future injection
-                        </p>
-                      </Col>
-                    </Row>
-                    <Row justify="center">
-                      <Col>
-                        <h1 style={{ fontSize: "4rem", textAlign: "center" }}>
-                          $ICY TOKEN UTILITY?
-                        </h1>
-                      </Col>
-                      </Row>
-                      <Row justify="center">
-                      <Col lg={14} xs={14} className="justify">
-                        <p className="verticalAlignText" style={{ fontSize: "1.5rem"}}>
-                        Minting of GEN 1 NFT as well as future GEN<br></br><br></br>
-                        GEN 1 NFT act as ticket to enter high value NFT giveaway
-                        </p>
-                      </Col>
-                    </Row>
                   </Col>
                 </Row>
 
+                <Row justify="center">
+                  <Col className="center">
+                    <h1 style={{ fontSize: "4rem" }}>
+                      WEN OFFICIAL LAUNCH?
+                    </h1>
+                    <p className="verticalAlignText">
+                      Mint will be a stealth launch.
+                    </p>
+                  </Col>
+                </Row>
+                <Row justify="center">
+                  <Col className="center">
+                    <h1 style={{ fontSize: "4rem" }}>
+                      MINT PRICE?
+                    </h1>
+                    <p className="verticalAlignText">
+                      First 1000 Mints = FREE<br></br><br></br>
+                      Remaining Mints = 0.016969ETH
+                    </p>
+                  </Col>
+                </Row>
+                <Row justify="center">
+                  <Col className="center">
+                    <h1 style={{ fontSize: "4rem" }}>
+                      TOTAL SUPPLY?
+                    </h1>
+                    <p className="verticalAlignText">
+                      3,000 (10 reserved for giveway)
+                    </p>
+                  </Col>
+                </Row>
+            
+                <Row justify="center">
+                  <Col className="center">
+                    <h1 style={{ fontSize: "4rem" }}>
+                      HOW MANY CAN I MINT?
+                    </h1>
+                    <p className="verticalAlignText">
+                      First 1000 Mints = 5/tx<br></br><br></br>
+                      Remaining Mints = 10/tx
+                    </p>
+                  </Col>
+                </Row>
+              
+                <Row justify="center">
+                  <Col className="center">
+                    <h1 style={{ fontSize: "4rem" }}>
+                      WHAT IS $ICY TOKEN?
+                    </h1>
+                    <p className="verticalAlignText">
+                      $ICY token is our backbone utility token <br></br><br></br>
+                      1 $ICY = 1 $ICY
+                    </p>
+                  </Col>
+                </Row>
+         
+                <Row justify="center">
+                  <Col className="center">
+                    <h1 style={{ fontSize: "4rem" }}>
+                      HOW TO EARN $ICY TOKEN?
+                    </h1>
+                    <p className="verticalAlignText">
+                      Only genesis Icy Polar are able to earn $ICY token.<br></br><br></br>
+                      Each genesis Icy Polar generate 10 $ICY token daily
+                    </p>
+                  </Col>
+                </Row>
+              
+                <Row justify="center">
+                  <Col className="center">
+                    <h1 style={{ fontSize: "4rem" }}>
+                      $ICY TOKEN SUPPLY?
+                    </h1>
+                    <p className="verticalAlignText">
+                      Total: 12,000,000<br></br><br></br>
+                      1,000,000 will be reserve in community wallet for<br></br><br></br>initializing liquidity pool as well as future injection
+                    </p>
+                  </Col>
+                </Row>
+              
+                <Row justify="center">
+                  <Col className="center">
+                    <h1 style={{ fontSize: "4rem"}}>
+                      $ICY TOKEN UTILITY?
+                    </h1>
+                    <p className="verticalAlignText">
+                      Minting of GEN 1 NFT as well as future GEN<br></br><br></br>
+                      GEN 1 NFT act as ticket to enter high value NFT giveaway
+                    </p>
+                  </Col>
+                </Row>
+
+                <Row justify="center">
+                  <Col className="center">
+                    <h1 style={{ fontSize: "4rem"}}>
+                      MEET THE TEAM
+                    </h1>
+                  </Col>
+                </Row>
+                <Row justify="space-around">
+                  <Col className="center">
+                    <Image className="headerIcon" preview={false} src={require('./roadmap.png')} />
+                    <h1 style={{ fontSize: "4rem"}}>
+                      MEET THE TEAM
+                    </h1>
+                  </Col>
+                  <Col className="center">
+                    <Image className="headerIcon" preview={false} src={require('./roadmap.png')} />
+                    <h1 style={{ fontSize: "4rem"}}>
+                      MEET THE TEAM
+                    </h1>
+                  </Col>
+                </Row>
               </div>
             </div>
-
-
-
 
             <div className="section">
               <Row>
