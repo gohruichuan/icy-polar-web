@@ -472,7 +472,6 @@ function App(props) {
                 </Row>
               </div>
 
-              <span id="about"></span>
               <div className="section">
                 <Row justify="center">
                   <Col>
@@ -488,7 +487,7 @@ function App(props) {
                 </Row>
               </div>
 
-              <span id="collection"></span>
+              <span id="about"></span>
               <div className="section">
                 <Row justify="center">
                   <Col>
@@ -499,7 +498,7 @@ function App(props) {
                   </Col>
                 </Row>
                 <Row justify="center">
-                  <Col lg={14} xs={14} className="justify">
+                  <Col lg={9} xs={9} className="justify">
                     <p className="verticalAlignText">
                       Icy Polar is a collection of 3,000 unqiue and randomly generated pixel polar bear. <br></br><br></br>
 
@@ -520,22 +519,22 @@ function App(props) {
                   </Col>
                 </Row>
                 <Row justify="center">
-                  <Col lg={14} xs={14} className="justify">
+                  <Col lg={9} xs={9} className="justify">
                     <p className="verticalAlignText">
                       Minting will be stealth; where first 1000 supply of mint will be FREE to mint. <br></br><br></br>
                       FREE mint is cap at 5/tx <br></br><br></br><br></br>
-                      Subsequent mint will be price at 0.016969ETH capped at 10/tx <br></br><br></br>
+                      Subsequent mint will be price at 0.016969 ETH capped at 10/tx <br></br><br></br>
                     </p>
                   </Col>
                 </Row>
               </div>
 
-              <span id="mint"></span>
+              <span id="roadmap"></span>
               <div className="section">
                 <Row justify="center">
-                  <Image className="headerIcon" preview={false} src={require('./roadmap.png')} />
                   <Col>
                     <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
+                      {/* <Image className="headerIcon" preview={false} src={require('./roadmap.png')} /> */}
                       ROADMAP
                     </h1>
                   </Col>
@@ -548,10 +547,11 @@ function App(props) {
                   </Col>
                 </Row>
                 <Row justify="center">
-                  <Col lg={14} xs={14} className="justify">
+                  <Col lg={9} xs={9} className="justify">
                     <p className="verticalAlignText">
                       - Website, Discord, Twitter Live <br></br><br></br>
                       - Community outreach <br></br><br></br>
+                      - Deploy Icy Polar contract <br></br><br></br>
                       - Stealth launch (Minting Live)
                     </p>
                   </Col>
@@ -564,15 +564,15 @@ function App(props) {
                   </Col>
                 </Row>
                 <Row justify="center">
-                  <Col lg={14} xs={14} className="justify">
+                  <Col lg={9} xs={9} className="justify">
                     <p className="verticalAlignText">
-                      -Post Sell Out:<br></br><br></br><br></br><br></br>
+                      Post Sell Out:<br></br><br></br><br></br><br></br>
 
-                      - Depoly staking contract; launching of $ICY token<br></br><br></br>
-                      -  Listing on Rarity.tools<br></br><br></br>
-                      - Initialized Liquidity Pool for $ICY<br></br><br></br>
+                      - Deploy staking contract; launching of $ICY tokens<br></br><br></br>
+                      - Listing on Rarity.tools<br></br><br></br>
+                      - Initialized Liquidity Pool for $ICY-$ETH<br></br><br></br>
                       - 10x Icy Polar Giveaway <br></br><br></br>
-                      - We will be putting a % of proceed into the community wallet
+                      - We will be putting % of proceed into the community wallet; preparation of grand giveaway 
                     </p>
                   </Col>
                 </Row>
@@ -584,10 +584,9 @@ function App(props) {
                   </Col>
                 </Row>
                 <Row justify="center">
-                  <Col lg={14} xs={14} className="justify">
+                  <Col lg={9} xs={9} className="justify">
                     <p className="verticalAlignText">
                       - Roll out Gen 1 NFT mintable with $ICY <br></br><br></br>
-                      - Holding Gen 1 NFT give access to enter hight value NFT giveaway <br></br><br></br>
                       - Inject secondary market royalites into $ICY liquidity pool <br></br><br></br>
                       - Extend into the metaverse; land purchase? TBA
                     </p>
@@ -595,7 +594,7 @@ function App(props) {
                 </Row>
               </div>
 
-              <span id="mint"></span>
+              <span id="faq"></span>
               <div className="section">
 
                 <Row justify="center">
@@ -623,7 +622,7 @@ function App(props) {
                     </h1>
                     <p className="verticalAlignText">
                       First 1000 Mints = FREE<br></br><br></br>
-                      Remaining Mints = 0.016969ETH
+                      Remaining Mints = 0.016969 ETH
                     </p>
                   </Col>
                 </Row>
@@ -637,7 +636,7 @@ function App(props) {
                     </p>
                   </Col>
                 </Row>
-            
+
                 <Row justify="center">
                   <Col className="center">
                     <h1 style={{ fontSize: "4rem" }}>
@@ -649,31 +648,31 @@ function App(props) {
                     </p>
                   </Col>
                 </Row>
-              
+
                 <Row justify="center">
                   <Col className="center">
                     <h1 style={{ fontSize: "4rem" }}>
                       WHAT IS $ICY TOKEN?
                     </h1>
                     <p className="verticalAlignText">
-                      $ICY token is our backbone utility token <br></br><br></br>
+                      $ICY tokens are our backbone utility tokens <br></br><br></br>
                       1 $ICY = 1 $ICY
                     </p>
                   </Col>
                 </Row>
-         
+
                 <Row justify="center">
                   <Col className="center">
                     <h1 style={{ fontSize: "4rem" }}>
                       HOW TO EARN $ICY TOKEN?
                     </h1>
                     <p className="verticalAlignText">
-                      Only genesis Icy Polar are able to earn $ICY token.<br></br><br></br>
-                      Each genesis Icy Polar generate 10 $ICY token daily
+                      Only genesis Icy Polar are able to earn $ICY tokens.<br></br><br></br>
+                      Each genesis Icy Polar generate 10 $ICY tokens daily
                     </p>
                   </Col>
                 </Row>
-              
+
                 <Row justify="center">
                   <Col className="center">
                     <h1 style={{ fontSize: "4rem" }}>
@@ -685,10 +684,10 @@ function App(props) {
                     </p>
                   </Col>
                 </Row>
-              
+
                 <Row justify="center">
                   <Col className="center">
-                    <h1 style={{ fontSize: "4rem"}}>
+                    <h1 style={{ fontSize: "4rem" }}>
                       $ICY TOKEN UTILITY?
                     </h1>
                     <p className="verticalAlignText">
@@ -697,25 +696,29 @@ function App(props) {
                     </p>
                   </Col>
                 </Row>
+              </div>
+
+              <span id="team"></span>
+              <div className="section">
 
                 <Row justify="center">
                   <Col className="center">
-                    <h1 style={{ fontSize: "4rem"}}>
+                    <h1 style={{ fontSize: "4rem" }}>
                       MEET THE TEAM
                     </h1>
                   </Col>
                 </Row>
                 <Row justify="space-around">
                   <Col className="center">
-                    <Image className="headerIcon" preview={false} src={require('./roadmap.png')} />
-                    <h1 style={{ fontSize: "4rem"}}>
-                      MEET THE TEAM
+                    <Image className="headerIcon" preview={false} src={require('./icyzeeky.jpeg')} />
+                    <h1 style={{ fontSize: "4rem" }}>
+                      ICY ZEEKY
                     </h1>
                   </Col>
                   <Col className="center">
-                    <Image className="headerIcon" preview={false} src={require('./roadmap.png')} />
-                    <h1 style={{ fontSize: "4rem"}}>
-                      MEET THE TEAM
+                    <Image className="headerIcon" preview={false} src={require('./icepick.jpeg')} />
+                    <h1 style={{ fontSize: "4rem" }}>
+                      ICE PICK
                     </h1>
                   </Col>
                 </Row>
@@ -743,9 +746,9 @@ function App(props) {
       {/* <ThemeSwitch /> */}
 
       {/* 👨‍💼 Your account is in the top right with a wallet at connect options */}
-      <div style={{ position: "fixed", right: 0, top: 0, padding: "10px 0 0 0", backgroundColor: "rgba(0, 0, 0, 0.35)", width: "100vw" }}>
+      <div style={{ position: "absolute", right: 0, top: 0, padding: "10px 0 0 0", width: "100vw" }}>
         <h1 style={{ marginLeft: 20, textAlign: "left" }} >
-          <a href="#home" style={{ color: "white" }}>VAN GOGH</a>
+          {/* <a href="#home" style={{ color: "white" }}>VAN GOGH</a> */}
           <Account
             address={address}
             IS_LAUNCH_BUY={IS_LAUNCH_BUY}

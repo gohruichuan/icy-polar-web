@@ -101,16 +101,16 @@ export default function Account({
   return (
     <span style={{float: "right"}} className="navBar">
       <span className="navLink">
-        <a href="#mint">MINT</a>
-      </span>
-      <span className="navLink">
         <a href="#about">ABOUT</a>
       </span>
       <span className="navLink">
-        <a href="#partners">PARTNERS</a>
+        <a href="#mint">MINT</a>
       </span>
       <span className="navLink">
         <a href="#roadmap">ROADMAP</a>
+      </span>
+      <span className="navLink">
+        <a href="#faq">FAQ</a>
       </span>
       <span className="navLink">
         <a href="#team">TEAM</a>
@@ -119,7 +119,7 @@ export default function Account({
         <a href="#oxy">$OXYGEN</a>
       </span> */}
       <a style={{marginLeft: 20}} href="https://www.twitter.com/thebabygoaty" target="_blank"><FontAwesomeIcon icon={faTwitter} className="navIcon"/></a>
-      <a href="https://discord.gg/rzDuv88x55" target="_blank"><FontAwesomeIcon  icon={faDiscord} className="navIcon"/></a>
+      <a href="https://discord.gg/U37j6e9m3X" target="_blank"><FontAwesomeIcon  icon={faDiscord} className="navIcon"/></a>
       <a href="https://opensea.io/collection/babygoaty" target="_blank"><Image className="openseaIcon" preview={false} src={require('../opensea.png')}/> </a>
       {display}
       {modalButtons}
