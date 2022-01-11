@@ -522,7 +522,7 @@ function App(props) {
                   <Col lg={9} xs={9} className="justify">
                     <p className="verticalAlignText">
                       Minting will be stealth; where first 1000 supply of mint will be FREE to mint. <br></br><br></br>
-                      FREE mint is cap at 5/tx <br></br><br></br><br></br>
+                      FREE mint is cap at 2/tx <br></br><br></br><br></br>
                       Subsequent mint will be price at 0.016969 ETH capped at 10/tx <br></br><br></br>
                     </p>
                   </Col>
@@ -643,7 +643,7 @@ function App(props) {
                       HOW MANY CAN I MINT?
                     </h1>
                     <p className="verticalAlignText">
-                      First 1000 Mints = 5/tx<br></br><br></br>
+                      First 1000 Mints = 2/tx<br></br><br></br>
                       Remaining Mints = 10/tx
                     </p>
                   </Col>
