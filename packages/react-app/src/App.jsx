@@ -532,7 +532,6 @@ function App(props) {
 
               <span id="mint"></span>
               <div className="section">
-
                 <Row justify="center">
                   <Image className="headerIcon" preview={false} src={require('./roadmap.png')} />
                   <Col>
@@ -606,118 +605,117 @@ function App(props) {
                     </h1>
                     <Row justify="center">
                       <Col>
-                        <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
+                        <h1 style={{ fontSize: "4rem", textAlign: "center" }}>
                           WEN OFFICIAL LAUNCH?
                         </h1>
                       </Col>
                       <Col lg={14} xs={14} className="justify">
-                        <p className="verticalAlignText">
+                        <p className="verticalAlignText" style={{ fontSize: "1.5rem"}}>
                           Mint will be a stealth launch.
                         </p>
                       </Col>
                     </Row>
                     <Row justify="center">
                       <Col>
-                        <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
+                        <h1 style={{ fontSize: "4rem", textAlign: "center" }}>
                           MINT PRICE?
                         </h1>
                       </Col>
                       </Row>
-                      <Row>
+                      <Row justify="center">
                       <Col lg={14} xs={14} className="justify">
-                        <p className="verticalAlignText">
-                        First 1000 Mints = FREE<br></br>
+                        <p className="verticalAlignText" style={{ fontSize: "1.5rem"}}>
+                        First 1000 Mints = FREE<br></br><br></br>
                         Remaining Mints = 0.016969ETH
                         </p>
                       </Col>
                     </Row>
                     <Row justify="center">
                       <Col>
-                        <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
+                        <h1 style={{ fontSize: "4rem", textAlign: "center" }}>
                           TOTAL SUPPLY?
                         </h1>
                       </Col>
                       </Row>
-                      <Row>
+                      <Row justify="center">
                       <Col lg={14} xs={14} className="justify">
-                        <p className="verticalAlignText">
+                        <p className="verticalAlignText" style={{ fontSize: "1.5rem"}}>
                         3,000 (10 reserved for giveway)
                         </p>
                       </Col>
                     </Row>
                     <Row justify="center">
                       <Col>
-                        <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
+                        <h1 style={{ fontSize: "4rem", textAlign: "center" }}>
                           HOW MANY CAN I MINT?
                         </h1>
                       </Col>
                       </Row>
-                      <Row>
+                      <Row justify="center">
                       <Col lg={14} xs={14} className="justify">
-                        <p className="verticalAlignText">
-                        First 1000 Mints = 5/tx<br></br>
+                        <p className="verticalAlignText" style={{ fontSize: "1.5rem"}}>
+                        First 1000 Mints = 5/tx<br></br><br></br>
                         Remaining Mints = 10/tx
                         </p>
                       </Col>
                     </Row>
-                  </Col>
-                  <Col>
-                    <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
-                      FAQ
-                    </h1>
                     <Row justify="center">
                       <Col>
-                        <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
-                          WEN OFFICIAL LAUNCH?
+                        <h1 style={{ fontSize: "4rem", textAlign: "center" }}>
+                          WHAT IS $ICY TOKEN?
                         </h1>
                       </Col>
+                      </Row>
+                      <Row justify="center">
                       <Col lg={14} xs={14} className="justify">
-                        <p className="verticalAlignText">
-                          Mint will be a stealth launch.
+                        <p className="verticalAlignText" style={{ fontSize: "1.5rem"}}>
+                        $ICY token is our backbone utility token <br></br><br></br>
+                        1 $ICY = 1 $ICY
                         </p>
                       </Col>
                     </Row>
                     <Row justify="center">
                       <Col>
-                        <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
-                          MINT PRICE?
+                        <h1 style={{ fontSize: "4rem", textAlign: "center" }}>
+                          HOW TO EARN $ICY TOKEN?
                         </h1>
                       </Col>
                       </Row>
-                      <Row>
+                      <Row justify="center">
                       <Col lg={14} xs={14} className="justify">
-                        <p className="verticalAlignText">
-                        First 1000 Mints = FREE<br></br>
-                        Remaining Mints = 0.016969ETH
+                        <p className="verticalAlignText" style={{ fontSize: "1.5rem"}}>
+                          Only genesis Icy Polar are able to earn $ICY token.<br></br><br></br>
+                          Each genesis Icy Polar generate 10 $ICY token daily
                         </p>
                       </Col>
                     </Row>
                     <Row justify="center">
                       <Col>
-                        <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
-                          TOTAL SUPPLY?
+                        <h1 style={{ fontSize: "4rem", textAlign: "center" }}>
+                          $ICY TOKEN SUPPLY?
                         </h1>
                       </Col>
                       </Row>
-                      <Row>
+                      <Row justify="center">
                       <Col lg={14} xs={14} className="justify">
-                        <p className="verticalAlignText">
-                        3,000 (10 reserved for giveway)
+                        <p className="verticalAlignText" style={{ fontSize: "1.5rem"}}>
+                        Total: 12,000,000<br></br><br></br>
+                        1,000,000 will be reserve in community wallet for initializing liquidity pool as well as future injection
                         </p>
                       </Col>
                     </Row>
                     <Row justify="center">
                       <Col>
-                        <h1 style={{ fontSize: "5rem", textAlign: "center" }}>
-                          HOW MANY CAN I MINT?
+                        <h1 style={{ fontSize: "4rem", textAlign: "center" }}>
+                          $ICY TOKEN UTILITY?
                         </h1>
                       </Col>
                       </Row>
-                      <Row>
+                      <Row justify="center">
                       <Col lg={14} xs={14} className="justify">
-                        <p className="verticalAlignText">
-                        First 1000 Mints = 5/tx<br></br>
-                        Remaining Mints = 10/tx
+                        <p className="verticalAlignText" style={{ fontSize: "1.5rem"}}>
+                        Minting of GEN 1 NFT as well as future GEN<br></br><br></br>
+                        GEN 1 NFT act as ticket to enter high value NFT giveaway
                         </p>
                       </Col>
                     </Row>

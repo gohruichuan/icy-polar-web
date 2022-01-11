@@ -95,10 +95,10 @@ html {
 }
 
 
-/* .blankSection {
+.blankSection {
   align-items: center;
-  height: 100vh;
-} */
+  height: 20vh;
+}
 
 .section{
   margin-top: 10vh;
