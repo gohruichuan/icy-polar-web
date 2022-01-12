@@ -30,13 +30,13 @@ var jwt = require('jsonwebtoken');
 
 const { ethers } = require("ethers");
 /// 📡 What chain are your contracts deployed to?
-const targetNetwork = NETWORKS.mainnet; // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
+const targetNetwork = NETWORKS.rinkeby; // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
 
 // 😬 Sorry for all the console logging
 const DEBUG = false;
 const NETWORKCHECK = false;
 const IS_LAUNCH_BUY = false;
-let PRICE = 0.08;
+const FREE_MINT_SUPPLY = 1000;
 let MAX_MINT = 5;
 
 // 🛰 providers
@@ -141,12 +141,12 @@ function App(props) {
   // ]);
 
   // keep track of a variable from the contract in the local React state:
-  // const balance = useContractReader(readContracts, "VanGoghExpressionism", "balanceOf", [address]);
+  // const balance = useContractReader(readContracts, "IcyPolar", "balanceOf", [address]);
   // console.log("🤗 balance:", balance);
 
 
   // // 📟 Listen for broadcast events
-  // const transferEvents = useEventListener(readContracts, "VanGoghExpressionism", "Transfer", localProvider, 1);
+  // const transferEvents = useEventListener(readContracts, "IcyPolar", "Transfer", localProvider, 1);
   // console.log("📟 Transfer events:", transferEvents);
 
   //
@@ -155,7 +155,7 @@ function App(props) {
   // const yourBalance = balance && balance.toNumber && balance.toNumber();
   // console.log("🤗 yourBalance:", yourBalance);
 
-  // const totalSupplyBigNum = useContractReader(readContracts, "VanGoghExpressionism", "totalSupply");
+  // const totalSupplyBigNum = useContractReader(readContracts, "IcyPolar", "totalSupply");
   // console.log("CALLED INFURA");
   // const totalSupply = totalSupplyBigNum && totalSupplyBigNum.toNumber();
 
@@ -204,10 +204,10 @@ function App(props) {
   // ]);
 
   // const totalSupply = new Promise((resolve, reject) => {
-  //    readContracts && readContracts.VanGoghExpressionism && readContracts.VanGoghExpressionism.totalSupply().then(result => result.toNumber());
+  //    readContracts && readContracts.IcyPolar && readContracts.IcyPolar.totalSupply().then(result => result.toNumber());
   // });
 
-  //  let totalSupply = readContracts && readContracts.VanGoghExpressionism && readContracts.VanGoghExpressionism.totalSupply().then(function(result) {
+  //  let totalSupply = readContracts && readContracts.IcyPolar && readContracts.IcyPolar.totalSupply().then(function(result) {
   //   return result && result.toNumber();
   //  });
 
@@ -333,10 +333,10 @@ function App(props) {
     )
   }
 
-  IS_LAUNCH_BUY && !totalSupply && readContracts && readContracts.VanGoghExpressionism && readContracts.VanGoghExpressionism.totalSupply().then(result => setTotalSupply(result.toNumber()));
+  IS_LAUNCH_BUY && !totalSupply && readContracts && readContracts.IcyPolar && readContracts.IcyPolar.totalSupply().then(result => setTotalSupply(result.toNumber()));
 
   function refreshTotalSupply() {
-    IS_LAUNCH_BUY && readContracts && readContracts.VanGoghExpressionism && readContracts.VanGoghExpressionism.totalSupply().then(result => setTotalSupply(result.toNumber()));
+    IS_LAUNCH_BUY && readContracts && readContracts.IcyPolar && readContracts.IcyPolar.totalSupply().then(result => setTotalSupply(result.toNumber()));
   }
 
   let mintDisplay = "";
@@ -344,20 +344,20 @@ function App(props) {
     mintDisplay = (
       <span>
         <h1 style={{ marginTop: 50, fontSize: "3rem" }}> Minting Coming Soon...</h1>
-        {/* <h2 style={{ fontSize: "2rem" }}>Mint Price: 0.08<span className="ether">Ξ</span> each</h2> */}
+        {/* <h2 style={{ fontSize: "2rem" }}>Mint Price: (totalSupply <= 1000)? "FREE": 0.016969<span className="ether"> ETH</span> each</h2> */}
       </span>
     )
   } else {
-
+    let PRICE = (totalSupply <= FREE_MINT_SUPPLY)? "FREE MINT": 0.016969 + " ETH Each";
     mintDisplay = (
       <div style={{ margin: "auto", marginTop: 32, paddingBottom: 32, textAlign: "center" }} className="mint" >
         <h1 style={{ fontSize: "5rem", margin: 0 }}> {totalSupply} / 1,000 Minted</h1>
         <br></br>
-        <h2 style={{ fontSize: "3rem", margin: 0 }}>{PRICE}<span className="ether">Ξ</span> Each</h2>
+        <h2 style={{ fontSize: "3rem", margin: 0 }}>{PRICE}</h2>
         <Image className="scalable-image" preview={false} src={require('./minus.png')} onClick={_ => {
           console.warn("minus!");
           let min = 1;
-          let max = 50;
+          let max = (totalSupply <= FREE_MINT_SUPPLY)? 2: 10;
 
           let _tempQuantity = tokenQuantity - 1;
           let value = Math.max(Number(min), Math.min(Number(max), Number(_tempQuantity)));
@@ -367,7 +367,7 @@ function App(props) {
         <Input placeholder="Quantity" maxLength={3} defaultValue={tokenQuantity} value={tokenQuantity} className="inputMint" onChange={event => {
 
           let min = 1;
-          let max = 50;
+          let max = (totalSupply <= FREE_MINT_SUPPLY)? 2: 10;
           let value = event.target.value;
 
           value = Math.max(Number(min), Math.min(Number(max), Number(value)));
@@ -376,7 +376,7 @@ function App(props) {
         <Image className="scalable-image" preview={false} src={require('./plus.png')} onClick={_ => {
           console.warn("plus!");
           let min = 1;
-          let max = 50;
+          let max = (totalSupply <= FREE_MINT_SUPPLY)? 2: 10;
 
           let _tempQuantity = tokenQuantity + 1;
           let value = Math.max(Number(min), Math.min(Number(max), Number(_tempQuantity)));
@@ -384,15 +384,15 @@ function App(props) {
           setTokenQuantity(value);
         }} />
 
-        {/* <h3>
-          <span>Max {MAX_MINT} mints per transaction</span>
-        </h3> */}
-        {/* <br></br>
-        <h2>
-          <span >Total {(tokenQuantity * PRICE).toFixed(4)} ETH</span>
+        <h1>
+          <span>Max {(totalSupply <= FREE_MINT_SUPPLY)? 2: 10} mints per transaction</span>
+        </h1>
+        <br></br>
+        {/* <h2>
+          <span >Total {(tokenQuantity * PRICE).toFixed(6)} ETH</span>
         </h2> */}
 
-        <br></br>
+        {/* <br></br> */}
         <Button className="mintBtn" size="large"
           onClick={() => {
             if (tokenQuantity === 0) {
@@ -414,7 +414,7 @@ function App(props) {
                 console.warn("etherPrice ! ", etherPrice);
 
                 etherPrice = Math.round(etherPrice * 1e4) / 1e4;
-                tx(writeContracts.VanGoghExpressionism.buy(tokenQuantity, { value: ethers.utils.parseEther(etherPrice.toString()) }),
+                tx(writeContracts.IcyPolar.buy(tokenQuantity, { value: ethers.utils.parseEther(etherPrice.toString()) }),
                   update => {
                     setIsLoading(false);
                     if (update.status === "confirmed" || update.status === 1) {
@@ -498,7 +498,7 @@ function App(props) {
                   </Col>
                 </Row>
                 <Row justify="center">
-                  <Col lg={9} xs={9} className="justify">
+                  <Col lg={10} xs={10} >
                     <p className="verticalAlignText">
                       Icy Polar is a collection of 3,000 unqiue and randomly generated pixel polar bear. <br></br><br></br>
 
@@ -519,12 +519,13 @@ function App(props) {
                   </Col>
                 </Row>
                 <Row justify="center">
-                  <Col lg={9} xs={9} className="justify">
+                  <Col lg={10} xs={10} >
                     <p className="verticalAlignText">
                       Minting will be stealth; where first 1000 supply of mint will be FREE to mint. <br></br><br></br>
                       FREE mint is cap at 2/tx <br></br><br></br><br></br>
                       Subsequent mint will be price at 0.016969 ETH capped at 10/tx <br></br><br></br>
                     </p>
+                    {mintDisplay}
                   </Col>
                 </Row>
               </div>
@@ -547,7 +548,7 @@ function App(props) {
                   </Col>
                 </Row>
                 <Row justify="center">
-                  <Col lg={9} xs={9} className="justify">
+                  <Col lg={10} xs={10} >
                     <p className="verticalAlignText">
                       - Website, Discord, Twitter Live <br></br><br></br>
                       - Community outreach <br></br><br></br>
@@ -564,7 +565,7 @@ function App(props) {
                   </Col>
                 </Row>
                 <Row justify="center">
-                  <Col lg={9} xs={9} className="justify">
+                  <Col lg={10} xs={10} >
                     <p className="verticalAlignText">
                       Post Sell Out:<br></br><br></br><br></br><br></br>
 
@@ -584,7 +585,7 @@ function App(props) {
                   </Col>
                 </Row>
                 <Row justify="center">
-                  <Col lg={9} xs={9} className="justify">
+                  <Col lg={10} xs={10} >
                     <p className="verticalAlignText">
                       - Roll out Gen 1 NFT mintable with $ICY <br></br><br></br>
                       - Inject secondary market royalites into $ICY liquidity pool <br></br><br></br>
@@ -733,7 +734,7 @@ function App(props) {
 
           {/* <Route path="/debugcontracts">
             <Contract
-              name="VanGoghExpressionism"
+              name="IcyPolar"
               signer={userSigner}
               provider={localProvider}
               address={address}
@@ -748,7 +749,7 @@ function App(props) {
       {/* 👨‍💼 Your account is in the top right with a wallet at connect options */}
       <div style={{ position: "absolute", right: 0, top: 0, padding: "10px 0 0 0", width: "100vw" }}>
         <h1 style={{ marginLeft: 20, textAlign: "left" }} >
-          {/* <a href="#home" style={{ color: "white" }}>VAN GOGH</a> */}
+          {/* <a href="#home" style={{ color: "white" }}>ICY POLAR</a> */}
           <Account
             address={address}
             IS_LAUNCH_BUY={IS_LAUNCH_BUY}
